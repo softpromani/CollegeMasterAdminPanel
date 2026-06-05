@@ -35,7 +35,7 @@
 <div class="pagetitle">
 
     <h1 class="fw-bold">
-        Banner
+        Subject Department
     </h1>
 
     <nav>
@@ -49,7 +49,7 @@
             </li>
 
             <li class="breadcrumb-item active">
-                Banner
+                Subject 
             </li>
 
         </ol>

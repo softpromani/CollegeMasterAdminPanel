@@ -115,7 +115,7 @@
 
                   <li>
 
-                      <a href="{{ route('admin.roles.index') }}">
+                      <a href="{{ route('admin.aqar.index') }}">
 
                           <i class="bi bi-circle"></i>
 

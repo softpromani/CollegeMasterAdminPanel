@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\admin\AQARController;
+use App\Http\Controllers\admin\AQARCriteriaController;
 use App\Http\Controllers\admin\AQARSessionController;
 use App\Http\Controllers\admin\BannerController;
 use Illuminate\Support\Facades\Route;
@@ -26,58 +28,61 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::prefix('admin')->name('admin.')->group(function () {
 
-    Route::get('dashboard',[DashboardController::class,'dashboard'])
+    Route::get('dashboard', [DashboardController::class, 'dashboard'])
         ->name('dashboard');
 
-    Route::resource('user',UserController::class);
-    Route::resource('roles',RoleController::class);
-    Route::resource('banner',BannerController::class);
-    Route::resource('event',EventController::class);
+    Route::resource('user', UserController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('banner', BannerController::class);
+    Route::resource('event', EventController::class);
 
     Route::get(
         'event-gallery/{event}',
-        [EventGalleryController::class,'index']
+        [EventGalleryController::class, 'index']
     )->name('event.gallery');
 
     Route::post(
         'event-gallery/store',
-        [EventGalleryController::class,'store']
+        [EventGalleryController::class, 'store']
     )->name('event.gallery.store');
 
     Route::delete(
         'event-gallery/{gallery}',
-        [EventGalleryController::class,'destroy']
+        [EventGalleryController::class, 'destroy']
     )->name('event.gallery.destroy');
 
-    Route::resource('permissions',PermissionController::class);
-    Route::resource('notice',NoticeController::class);
-    Route::resource('department',DepartmentController::class);
-    Route::resource('subject-department',SubjectDepartmentController::class);
-    Route::resource('faculty',FacultyController::class);
-    Route::resource('non-faculty',NonFacultyController::class);
-    Route::resource('aqar-session',AQARSessionController::class);
- Route::resource('profile', ProfileController::class)
-    ->only(['index']);
+    Route::resource('permissions', PermissionController::class);
+    Route::resource('notice', NoticeController::class);
+    Route::resource('department', DepartmentController::class);
+    Route::resource('subject-department', SubjectDepartmentController::class);
+    Route::resource('faculty', FacultyController::class);
+    Route::resource('non-faculty', NonFacultyController::class);
+    Route::resource('aqar-session', AQARSessionController::class);
+    Route::resource('aqar', AQARController::class);
+    Route::resource('aqar-criteria', AQARCriteriaController::class);
 
-    Route::put('profile/update',
-    [ProfileController::class,'update'])
-    ->name('profile.update');
+    Route::resource('profile', ProfileController::class)
+        ->only(['index']);
 
-Route::post('profile/password',
-    [ProfileController::class,'updatePassword'])
-    ->name('password.update');
+    Route::put(
+        'profile/update',
+        [ProfileController::class, 'update']
+    )
+        ->name('profile.update');
+
+    Route::post(
+        'profile/password',
+        [ProfileController::class, 'updatePassword']
+    )
+        ->name('password.update');
 
     Route::get(
         'role-has-permission/{role?}',
-        [PermissionController::class,'roleHasPermission']
+        [PermissionController::class, 'roleHasPermission']
     )->name('roles.permission');
 
     Route::post(
         'role-has-permission-update/{id}',
-        [PermissionController::class,'rolePermissionUpdate']
+        [PermissionController::class, 'rolePermissionUpdate']
     )->name('roles.permission.update');
-
-
-
-
 });
