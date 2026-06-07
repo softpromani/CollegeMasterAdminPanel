@@ -54,64 +54,63 @@ class ProfileController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request)
-{
-    $user = Auth::user();
+    {
+        $user = Auth::user();
 
-    $user->first_name = $request->first_name;
-    $user->last_name  = $request->last_name;
-    $user->email      = $request->email;
-    $user->phone      = $request->phone;
+        $user->first_name = $request->first_name;
+        $user->last_name  = $request->last_name;
+        $user->email      = $request->email;
+        $user->phone      = $request->phone;
 
-if ($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
 
-    if ($user->image &&
-        Storage::disk('public')->exists($user->image)) {
+            if (
+                $user->image &&
+                Storage::disk('public')->exists($user->image)
+            ) {
 
-        Storage::disk('public')->delete($user->image);
+                Storage::disk('public')->delete($user->image);
+            }
+
+            $user->image = $request
+                ->file('image')
+                ->store('users', 'public');
+        }
+
+        $user->save();
+
+        toast('Profile Updated Successfully', 'success');
+        return back();
     }
 
-    $user->image = $request
-        ->file('image')
-        ->store('users', 'public');
-}
 
-    $user->save();
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required'
+        ]);
 
-    return back()->with('success','Profile updated successfully.');
-}
+        $user = Auth::user();
 
+        if (!Hash::check(
+            $request->current_password,
+            $user->password
+        )) {
 
-public function updatePassword(Request $request)
-{
-    $request->validate([
-        'current_password' => 'required',
-        'password' => 'required'
-    ]);
+        toast('Current Password is Incorrect', 'error');
+            return back();
+        }
 
-    $user = Auth::user();
-
-    if (!Hash::check(
-        $request->current_password,
-        $user->password
-    )) {
-
-        return back()->with(
-            'error',
-            'Current password is incorrect.'
+        $user->password = Hash::make(
+            $request->password
         );
+
+        $user->save();
+
+        toast('Password changed Successfully', 'success');
+        return back();
     }
-
-    $user->password = Hash::make(
-        $request->password
-    );
-
-    $user->save();
-
-    return back()->with(
-        'success',
-        'Password changed successfully.'
-    );
-}
     /**
      * Remove the specified resource from storage.
      */

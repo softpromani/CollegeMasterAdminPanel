@@ -188,13 +188,9 @@ class SubjectDepartmentController extends Controller
 
             'image' => $image
         ]);
-
+toast('Subject-Department Created Successfully', 'success');
         return redirect()
-            ->route('admin.subject-department.index')
-            ->with(
-                'success',
-                'Subject Created Successfully'
-            );
+            ->route('admin.subject-department.index');
     }
 
 
@@ -274,12 +270,9 @@ class SubjectDepartmentController extends Controller
             'image'=>$image
         ]);
 
+        toast('Subject-Department Updated Successfully', 'success');
         return redirect()
-            ->route('admin.subject-department.index')
-            ->with(
-                'success',
-                'Subject Updated Successfully'
-            );
+            ->route('admin.subject-department.index');
     }
 
     public function destroy($id)
@@ -296,12 +289,8 @@ class SubjectDepartmentController extends Controller
         }
 
         $subject->delete();
-
-        return back()
-            ->with(
-                'success',
-                'Subject Deleted Successfully'
-            );
+        toast('Subject-Department Deleted Successfully', 'success');
+        return redirect() ->route('admin.subject-department.index');
     }
 
 }

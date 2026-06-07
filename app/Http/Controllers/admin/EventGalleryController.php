@@ -147,8 +147,8 @@ public function store(Request $request)
         ]);
     }
 
-    return back()
-        ->with('success','Images Uploaded');
+    toast('Image uploaded', 'success');
+    return back();
 }
 
 public function destroy($id)
@@ -160,7 +160,7 @@ public function destroy($id)
 
     $gallery->delete();
 
-    return back()
-        ->with('success','Image Deleted');
+    toast('Image Deleted Successfully', 'success');
+    return back();
 }
 }

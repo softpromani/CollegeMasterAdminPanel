@@ -174,9 +174,9 @@ class DepartmentController extends Controller
 
         ]);
 
+        toast('Department Created Successfully', 'success');
         return redirect()
-            ->route('admin.department.index')
-            ->with('success', 'Department Created Successfully');
+            ->route('admin.department.index');
     }
 
 
@@ -240,9 +240,9 @@ class DepartmentController extends Controller
 
         ]);
 
+        toast('Department Updated Successfully', 'success');
         return redirect()
-            ->route('admin.department.index')
-            ->with('success', 'Department Updated Successfully');
+            ->route('admin.department.index');
     }
 
     /**
@@ -261,8 +261,8 @@ class DepartmentController extends Controller
 
         $department->delete();
 
+        toast('Department Deleted Successfully', 'success');
         return redirect()
-            ->back()
-            ->with('success', 'Department Deleted Successfully');
+            ->back();
     }
 }

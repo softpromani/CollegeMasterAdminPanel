@@ -139,9 +139,9 @@ class RoleController extends Controller
 
         ]);
 
+        toast('Role Created Successfully', 'success');
         return redirect()
-            ->route('admin.roles.index')
-            ->with('success', 'Role Created Successfully');
+            ->route('admin.roles.index');
     }
 
     /**
@@ -174,7 +174,8 @@ class RoleController extends Controller
 
      $role->update([ 'name' => $request->role ]);
 
-     return redirect() ->route('admin.roles.index') ->with('success', 'Role Updated Successfully'); }
+     toast('Role Updated Successfully', 'success');
+     return redirect() ->route('admin.roles.index'); }
 
     /**
      * Remove the specified resource from storage.
@@ -184,6 +185,7 @@ class RoleController extends Controller
 
         Role::find($id)->delete();
 
-        return back();
+        toast('Role Deleted Successfully', 'success');
+        return redirect()->route('admin.roles.index');
     }
 }

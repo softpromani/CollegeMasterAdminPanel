@@ -170,9 +170,8 @@ class NonFacultyController extends Controller
 
         ]);
 
-        return redirect()
-            ->route('admin.non-faculty.index')
-            ->with('success', 'Created Successfully');
+        toast('Non-Faculty Created Successfully', 'success');
+        return redirect()->route('admin.non-faculty.index');
     }
 
     /**
@@ -225,9 +224,9 @@ class NonFacultyController extends Controller
 
         ]);
 
+        toast('Non-Faculty Updated Successfully', 'success');
         return redirect()
-            ->route('admin.non-faculty.index')
-            ->with('success', 'Updated Successfully');
+            ->route('admin.non-faculty.index');
     }
 
     public function destroy($id)
@@ -243,8 +242,8 @@ class NonFacultyController extends Controller
 
         $nonFaculty->delete();
 
-        return back()
-            ->with('success', 'Deleted Successfully');
+      toast('Non-Faculty Deleted Successfully', 'success');
+        return back();
     }
 }
 

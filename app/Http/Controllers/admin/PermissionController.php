@@ -15,52 +15,51 @@ class PermissionController extends Controller
 
 
     public function roleHasPermission(Request $request)
-{
-    $roles = Role::all();
+    {
+        $roles = Role::all();
 
-    $selectedRole = null;
+        $selectedRole = null;
 
-    $permissions = [];
+        $permissions = [];
 
-    if($request->role){
+        if ($request->role) {
 
-        $selectedRole = Role::find($request->role);
+            $selectedRole = Role::find($request->role);
 
-        $permissions = Permission::all()
+            $permissions = Permission::all()
 
-            ->groupBy(function($permission){
+                ->groupBy(function ($permission) {
 
-                return explode('_', $permission->name)[0];
+                    return explode('_', $permission->name)[0];
+                });
+        }
 
-            });
+        return view(
+            'admin.role-has-permission',
+
+            compact(
+                'roles',
+                'selectedRole',
+                'permissions'
+            )
+        );
     }
 
-    return view(
-        'admin.role-has-permission',
 
-        compact(
-            'roles',
-            'selectedRole',
-            'permissions'
-        )
-    );
-}
+    public function rolePermissionUpdate(Request $request, $id)
+    {
+        $role = Role::findOrFail($id);
 
+        $role->syncPermissions(
 
-public function rolePermissionUpdate(Request $request, $id)
-{
-    $role = Role::findOrFail($id);
+            $request->permissions ?? []
 
-    $role->syncPermissions(
+        );
 
-        $request->permissions ?? []
-
-    );
-
-    return redirect()
-        ->back()
-        ->with('success','Permissions Updated');
-}
+        toast('Permission Updated Successfully', 'success');
+        return redirect()
+            ->back();
+    }
 
     public function index()
     {
@@ -78,14 +77,14 @@ public function rolePermissionUpdate(Request $request, $id)
     /**
      * Store a newly created resource in storage.
      */
-  public function store(Request $request)
-{
-    Permission::create([
-        'name' => $request->name
-    ]);
+    public function store(Request $request)
+    {
+        Permission::create([
+            'name' => $request->name
+        ]);
 
-    return redirect()->back();
-}
+        return redirect()->back();
+    }
 
     /**
      * Display the specified resource.

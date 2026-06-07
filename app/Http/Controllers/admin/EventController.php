@@ -176,9 +176,8 @@ class EventController extends Controller
 
     ]);
 
-    return redirect()
-        ->route('admin.event.index')
-        ->with('success','Event Created Successfully');
+    toast('Event Created Successfully', 'success');
+    return redirect()->route('admin.event.index');
 }
 
     /**
@@ -237,9 +236,8 @@ class EventController extends Controller
 
     ]);
 
-    return redirect()
-        ->route('admin.event.index')
-        ->with('success','Event Updated Successfully');
+    toast('Event Updated Successfully', 'success');
+    return redirect()->route('admin.event.index');
 }
 
     /**
@@ -257,7 +255,7 @@ class EventController extends Controller
 
     $event->delete();
 
-    return back()
-        ->with('success','Event Deleted Successfully');
+    toast('Event Deleted Successfully', 'success');
+    return back();
 }
 }

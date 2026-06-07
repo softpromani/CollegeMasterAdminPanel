@@ -159,9 +159,9 @@ class AQARSessionController extends Controller
 
         ]);
 
+        toast('AQAR-Session Created Successfully', 'success');
         return redirect()
-            ->route('admin.aqar-session.index')
-            ->with('success', 'AQAR Added Successfully');
+            ->route('admin.aqar-session.index');
     }
 
     /**
@@ -215,9 +215,9 @@ class AQARSessionController extends Controller
 
         ]);
 
+        toast('AQAR-Session updated Successfully', 'success');
         return redirect()
-            ->route('admin.aqar.index')
-            ->with('success', 'AQAR Updated Successfully');
+            ->route('admin.aqar.index');
     }
 
     public function destroy($id)
@@ -229,9 +229,9 @@ class AQARSessionController extends Controller
 
         $aqar->delete();
 
+        toast('AQAR-Session Deleted Successfully', 'success');
         return redirect()
-            ->back()
-            ->with('success', 'AQAR Deleted Successfully');
+            ->back();
     }
 }
 

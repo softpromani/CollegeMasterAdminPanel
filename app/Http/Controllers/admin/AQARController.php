@@ -27,9 +27,9 @@ class AQARController extends Controller
                     return '
                         <a
                             href="' . route(
-    'admin.aqar-criteria.index',
-    ['aqar_id' => $row->id]
-) . '"
+                        'admin.aqar-criteria.index',
+                        ['aqar_id' => $row->id]
+                    ) . '"
 
                             class="btn btn-sm btn-info"
                         >
@@ -48,9 +48,9 @@ class AQARController extends Controller
 
                             <a
                                 href="' . route(
-                                    'admin.aqar.edit',
-                                    $row->id
-                                ) . '"
+                        'admin.aqar.edit',
+                        $row->id
+                    ) . '"
 
                                 class="btn btn-sm btn-warning
                                 d-flex
@@ -64,9 +64,9 @@ class AQARController extends Controller
 
                             <form
                                 action="' . route(
-                                    'admin.aqar.destroy',
-                                    $row->id
-                                ) . '"
+                        'admin.aqar.destroy',
+                        $row->id
+                    ) . '"
 
                                 method="POST"
 
@@ -149,7 +149,7 @@ class AQARController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-     public function create()
+    public function create()
     {
         return view('admin.aqar.create');
     }
@@ -157,7 +157,7 @@ class AQARController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-      public function store(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
 
@@ -171,12 +171,9 @@ class AQARController extends Controller
 
         ]);
 
+        toast('AQAR Created Successfully', 'success');
         return redirect()
-            ->route('admin.aqar.index')
-            ->with(
-                'success',
-                'AQAR Created Successfully'
-            );
+            ->route('admin.aqar.index');
     }
 
     /**
@@ -190,7 +187,7 @@ class AQARController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-      public function edit(string $id)
+    public function edit(string $id)
     {
         $aqar = AQAR::findOrFail($id);
 
@@ -206,8 +203,7 @@ class AQARController extends Controller
     public function update(
         Request $request,
         string $id
-    )
-    {
+    ) {
         $request->validate([
 
             'name' => 'required|max:255'
@@ -222,12 +218,9 @@ class AQARController extends Controller
 
         ]);
 
+        toast('AQAR Updated Successfully', 'success');
         return redirect()
-            ->route('admin.aqar.index')
-            ->with(
-                'success',
-                'AQAR Updated Successfully'
-            );
+            ->route('admin.aqar.index');
     }
 
     /**
@@ -238,11 +231,7 @@ class AQARController extends Controller
         $aqar = AQAR::findOrFail($id);
 
         $aqar->delete();
-
-        return back()
-            ->with(
-                'success',
-                'AQAR Deleted Successfully'
-            );
+        toast('AQAR Deleted Successfully', 'success');
+        return redirect()->route( 'admin.aqar.index' );
     }
 }

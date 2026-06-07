@@ -212,9 +212,9 @@ public function store(Request $request)
 
     ]);
 
+    toast('Notice Created Successfully', 'success');
     return redirect()
-        ->route('admin.notice.index')
-        ->with('success', 'Notice Created Successfully');
+        ->route('admin.notice.index');
 }
     /**
      * Display the specified resource.
@@ -305,9 +305,9 @@ public function update(Request $request, $id)
 
     ]);
 
+    toast('Notice Updated Successfully', 'success');
     return redirect()
-        ->route('admin.notice.index')
-        ->with('success', 'Notice Updated Successfully');
+        ->route('admin.notice.index');
 }
 
     public function destroy($id)
@@ -321,8 +321,7 @@ public function update(Request $request, $id)
 
         $notice->delete();
 
-        return redirect()
-            ->back()
-            ->with('success', 'Notice Deleted Successfully');
+        toast('Notice Deleted Successfully', 'success');
+        return redirect()->route('admin.notice.index');
     }
 }

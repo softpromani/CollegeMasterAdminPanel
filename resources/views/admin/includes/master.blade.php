@@ -23,5 +23,7 @@
 @include('admin.includes.scripts')
 @yield('script-area')
 @stack('scripts')
+
+@include('sweetalert::Alert')
 </body>
 </html>

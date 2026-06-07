@@ -7,36 +7,37 @@ use App\Models\Banner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class BannerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-   public function index(Request $request)
-{
-    if ($request->ajax()) {
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
 
-        $banners = Banner::latest();
+            $banners = Banner::latest();
 
-        return DataTables::of($banners)
+            return DataTables::of($banners)
 
-            ->addIndexColumn()
+                ->addIndexColumn()
 
-            ->addColumn('image', function ($row) {
+                ->addColumn('image', function ($row) {
 
-                return '
+                    return '
                     <img
                         src="' . asset('storage/' . $row->image) . '"
                         width="80"
                         class="rounded"
                     >
                 ';
-            })
+                })
 
-            ->addColumn('action', function ($row) {
+                ->addColumn('action', function ($row) {
 
-                return '
+                    return '
 
                     <div class="d-flex gap-2">
 
@@ -70,95 +71,97 @@ class BannerController extends Controller
 
                     </div>
                 ';
-            })
+                })
 
-            ->rawColumns(['image', 'action'])
+                ->rawColumns(['image', 'action'])
 
-            ->make(true);
+                ->make(true);
+        }
+
+        $columns = [
+
+            [
+                'data' => 'DT_RowIndex',
+                'title' => 'No',
+                'searchable' => false,
+                'orderable' => false,
+            ],
+
+            [
+                'data' => 'image',
+                'title' => 'Banner',
+                'searchable' => false,
+                'orderable' => false,
+            ],
+
+            [
+                'data' => 'title_1',
+                'title' => 'Title 1',
+            ],
+
+            [
+                'data' => 'title_2',
+                'title' => 'Title 2',
+            ],
+
+            [
+                'data' => 'url',
+                'title' => 'URL',
+            ],
+
+            [
+                'data' => 'action',
+                'title' => 'Action',
+                'searchable' => false,
+                'orderable' => false,
+            ],
+        ];
+
+        return view('admin.banner.index', compact('columns'));
     }
-
-    $columns = [
-
-        [
-            'data' => 'DT_RowIndex',
-            'title' => 'No',
-            'searchable' => false,
-            'orderable' => false,
-        ],
-
-        [
-            'data' => 'image',
-            'title' => 'Banner',
-            'searchable' => false,
-            'orderable' => false,
-        ],
-
-        [
-            'data' => 'title_1',
-            'title' => 'Title 1',
-        ],
-
-        [
-            'data' => 'title_2',
-            'title' => 'Title 2',
-        ],
-
-        [
-            'data' => 'url',
-            'title' => 'URL',
-        ],
-
-        [
-            'data' => 'action',
-            'title' => 'Action',
-            'searchable' => false,
-            'orderable' => false,
-        ],
-    ];
-
-    return view('admin.banner.index', compact('columns'));
-}
 
     /**
      * Show the form for creating a new resource.
      */
- public function create()
-{
-    return view('admin.banner.create');
-}
+    public function create()
+    {
+        return view('admin.banner.create');
+    }
 
     /**
      * Store a newly created resource in storage.
      */
-   public function store(Request $request)
-{
-    $request->validate([
+    public function store(Request $request)
+    {
+        $request->validate([
 
-        'title_1' => 'required',
+            'title_1' => 'required',
 
-        'image' => 'nullable',
+            'image' => 'nullable',
 
-    ]);
+        ]);
 
-    $image = $request->file('image')
-        ->store('banner', 'public');
+        $image = $request->file('image')
+            ->store('banner', 'public');
 
-    Banner::create([
+        Banner::create([
 
-        'title_1' => $request->title_1,
+            'title_1' => $request->title_1,
 
-        'title_2' => $request->title_2,
+            'title_2' => $request->title_2,
 
-        'url' => $request->url,
+            'url' => $request->url,
 
-        'image' => $image,
+            'image' => $image,
 
-    ]);
+        ]);
 
-    return redirect()
-        ->route('admin.banner.index')
-        ->with('success', 'Banner Created Successfully');
-}
+        toast('Banner Created Successfully', 'success');
+
+
+        return redirect()
+            ->route('admin.banner.index');
+    }
 
     /**
      * Display the specified resource.
@@ -171,34 +174,72 @@ class BannerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-  public function edit($id)
-{
-    $banner = Banner::findOrFail($id);
+    public function edit($id)
+    {
+        $banner = Banner::findOrFail($id);
 
-    return view(
-        'admin.banner.create',
-        compact('banner')
-    );
-}
+        return view(
+            'admin.banner.create',
+            compact('banner')
+        );
+    }
 
     /**
      * Update the specified resource in storage.
      */
- public function update(Request $request, $id)
-{
-    $banner = Banner::findOrFail($id);
+    public function update(Request $request, $id)
+    {
+        $banner = Banner::findOrFail($id);
 
-    $request->validate([
+        $request->validate([
 
-        'title_1' => 'required',
+            'title_1' => 'required',
 
-        'image' => 'nullable|image',
+            'image' => 'nullable|image',
 
-    ]);
+        ]);
 
-    $image = $banner->image;
+        $image = $banner->image;
 
-    if ($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
+
+            if (
+                $banner->image &&
+                Storage::disk('public')->exists($banner->image)
+            ) {
+
+                Storage::disk('public')
+                    ->delete($banner->image);
+            }
+
+            $image = $request->file('image')
+                ->store('banner', 'public');
+        }
+
+        $banner->update([
+
+            'title_1' => $request->title_1,
+
+            'title_2' => $request->title_2,
+
+            'url' => $request->url,
+
+            'image' => $image,
+
+        ]);
+
+        toast('Banner updated Successfully', 'success');
+
+        return redirect()
+            ->route('admin.banner.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
+    {
+        $banner = Banner::findOrFail($id);
 
         if (
             $banner->image &&
@@ -209,46 +250,9 @@ class BannerController extends Controller
                 ->delete($banner->image);
         }
 
-        $image = $request->file('image')
-            ->store('banner', 'public');
+        $banner->delete();
+
+        toast('Banner Deleted Successfully', 'success');
+        return redirect()->route('admin.banner.index');
     }
-
-    $banner->update([
-
-        'title_1' => $request->title_1,
-
-        'title_2' => $request->title_2,
-
-        'url' => $request->url,
-
-        'image' => $image,
-
-    ]);
-
-    return redirect()
-        ->route('admin.banner.index')
-        ->with('success', 'Banner Updated Successfully');
-}
-
-    /**
-     * Remove the specified resource from storage.
-     */
-   public function destroy($id)
-{
-    $banner = Banner::findOrFail($id);
-
-    if (
-        $banner->image &&
-        Storage::disk('public')->exists($banner->image)
-    ) {
-
-        Storage::disk('public')
-            ->delete($banner->image);
-    }
-
-    $banner->delete();
-
-    return back()
-        ->with('success', 'Banner Deleted Successfully');
-}
 }

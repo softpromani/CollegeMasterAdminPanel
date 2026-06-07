@@ -174,10 +174,8 @@ class AQARCriteriaController extends Controller
 
         ]);
 
-        return back()->with(
-            'success',
-            'Criteria Added Successfully'
-        );
+        toast('Criteria Created Successfully', 'success');
+        return back();
     }
 
     /**
@@ -270,12 +268,9 @@ class AQARCriteriaController extends Controller
 
         ]);
 
+        toast('Critera Updated Successfully', 'success');
         return redirect()
-            ->back()
-            ->with(
-                'success',
-                'Criteria Updated Successfully'
-            );
+            ->back();
     }
 
     public function destroy($id)
@@ -295,10 +290,8 @@ class AQARCriteriaController extends Controller
 
         $criteria->delete();
 
-        return back()->with(
-            'success',
-            'Criteria Deleted Successfully'
-        );
+        toast('Criteria Deleted Successfully', 'success');
+        return back();
     }
 
 }

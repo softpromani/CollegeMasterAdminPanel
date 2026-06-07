@@ -272,12 +272,8 @@ class FacultyController extends Controller
         'resume' => $resume,
     ]);
 
-    return redirect()
-        ->route('admin.faculty.index')
-        ->with(
-            'success',
-            'Faculty Created Successfully'
-        );
+    toast('Faculty Created Successfully', 'success');
+    return redirect()->route('admin.faculty.index');
 }
 
     /**
@@ -379,12 +375,9 @@ class FacultyController extends Controller
         'resume'=>$resume,
     ]);
 
+    toast('Faculty Updated Successfully', 'success');
     return redirect()
-        ->route('admin.faculty.index')
-        ->with(
-            'success',
-            'Faculty Updated Successfully'
-        );
+        ->route('admin.faculty.index');
 }
 
     /**
@@ -414,10 +407,7 @@ class FacultyController extends Controller
 
     $faculty->delete();
 
-    return back()
-        ->with(
-            'success',
-            'Faculty Deleted Successfully'
-        );
+    toast('Faculty Deleted Successfully', 'success');
+    return back();
 }
 }
