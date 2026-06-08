@@ -26,7 +26,7 @@
 
     <h1 class="fw-bold">
 
-        Gallery
+       {{ __('messages.gallery') }}
 
     </h1>
 

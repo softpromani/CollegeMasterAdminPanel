@@ -30,6 +30,7 @@ Route::middleware(['localization'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
+;
 
     Route::get('dashboard', [DashboardController::class, 'dashboard'])
         ->name('dashboard');
