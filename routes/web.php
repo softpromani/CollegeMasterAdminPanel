@@ -26,7 +26,10 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['localization'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
 
     Route::get('dashboard', [DashboardController::class, 'dashboard'])
         ->name('dashboard');
@@ -86,3 +89,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
         [PermissionController::class, 'rolePermissionUpdate']
     )->name('roles.permission.update');
 });
+
+
+Route::get('/language/{locale}', function ($locale) {
+
+    if (! in_array($locale, ['en', 'hi'])) {
+        abort(400);
+    }
+
+    session()->put('locale', $locale);
+     return back();
+})
+->name('language.switch');

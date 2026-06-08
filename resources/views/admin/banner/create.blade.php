@@ -19,7 +19,7 @@
 
     <h1 class="fw-bold">
 
-        {{ isset($banner) ? 'Edit Banner' : 'Create Banner' }}
+    {{ __('messages.add_banner') }}
 
     </h1>
 

@@ -99,71 +99,63 @@
 
         </li><!-- End Notification Nav -->
 
-        <li class="nav-item dropdown">
+      <li class="nav-item dropdown">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number">3</span>
-          </a><!-- End Messages Icon -->
+    <a class="nav-link nav-icon position-relative"
+       href="#"
+       data-bs-toggle="dropdown">
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-            <li class="dropdown-header">
-              You have 3 new messages
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+        <i class="bi bi-translate fs-5"></i>
 
-            <li class="message-item">
-              <a href="#">
-                <img src="{{ asset('admin/assets/img/messages-1.jpg')}}" alt="" class="rounded-circle">
-                <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+        <span class="badge bg-warning badge-number">
+            {{ strtoupper(app()->getLocale()) }}
+        </span>
 
-            <li class="message-item">
-              <a href="#">
-                <img src="{{ asset('admin/assets/img/messages-2.jpg')}}" alt="" class="rounded-circle">
-                <div>
-                  <h4>Anna Nelson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>6 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+    </a>
 
-            <li class="message-item">
-              <a href="#">
-                <img src="{{ asset('admin/assets/img/messages-3.jpg')}}" alt="" class="rounded-circle">
-                <div>
-                  <h4>David Muldon</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>8 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+    <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3">
 
-            <li class="dropdown-footer">
-              <a href="#">Show all messages</a>
-            </li>
+        <li class="dropdown-header fw-bold">
+            Select Language
+        </li>
 
-          </ul><!-- End Messages Dropdown Items -->
+        <li>
+            <hr class="dropdown-divider">
+        </li>
 
-        </li><!-- End Messages Nav -->
+        <li>
+            <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+               href="{{ route('language.switch', 'en') }}">
+
+                <i class="bi bi-globe text-primary"></i>
+
+                <span>English</span>
+
+                @if(app()->getLocale() == 'en')
+                    <i class="bi bi-check-lg ms-auto text-success"></i>
+                @endif
+
+            </a>
+        </li>
+
+        <li>
+            <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+               href="{{ route('language.switch', 'hi') }}">
+
+                <i class="bi bi-translate text-danger"></i>
+
+                <span>हिन्दी</span>
+
+                @if(app()->getLocale() == 'hi')
+                    <i class="bi bi-check-lg ms-auto text-success"></i>
+                @endif
+
+            </a>
+        </li>
+
+    </ul>
+
+</li>
 
         <li class="nav-item dropdown pe-3">
 
@@ -196,7 +188,7 @@
               <hr class="dropdown-divider">
             </li>
 
-    
+
             <li>
               <hr class="dropdown-divider">
             </li>

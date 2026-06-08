@@ -14,8 +14,7 @@
 
         <h1 class="fw-bold">
 
-            {{ isset($subject) ? 'Edit Banner' : 'Create Subject Department' }}
-
+          {{ __('messages.add_subject') }}
         </h1>
 
         <nav>

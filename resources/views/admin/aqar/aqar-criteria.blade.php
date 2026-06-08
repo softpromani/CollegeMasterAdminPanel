@@ -6,7 +6,7 @@
 
     <h1 class="fw-bold">
 
-        AQAR Criteria
+      {{ __('messages.add_aqar') }}
 
     </h1>
 

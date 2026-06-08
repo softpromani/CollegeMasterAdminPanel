@@ -19,7 +19,7 @@
 
     <h1 class="fw-bold">
 
-        {{ isset($department) ? 'Edit Department' : 'Create Department' }}
+       {{ __('messages.add_department') }}
 
     </h1>
 

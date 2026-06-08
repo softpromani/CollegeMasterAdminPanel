@@ -142,7 +142,9 @@
 @section('content')
 
 <div class="pagetitle">
-    <h1>Dashboard</h1>
+
+
+    <h1>{{ __('messages.dashboard') }}</h1>
 </div>
 
 <section class="section dashboard">

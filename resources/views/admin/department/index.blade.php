@@ -6,8 +6,7 @@
 
     <h1 class="fw-bold">
 
-        Departments
-
+      {{ __('messages.department') }}
     </h1>
 
 </div>
@@ -27,8 +26,7 @@
 
                     <i class="bi bi-plus-circle me-2"></i>
 
-                    Add Department
-
+                    {{ __('messages.add_department') }}
                 </a>
 
             </div>
@@ -45,4 +43,4 @@
 
 </section>
 
-@endsection 
+@endsection

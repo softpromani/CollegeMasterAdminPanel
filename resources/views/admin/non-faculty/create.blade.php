@@ -10,9 +10,7 @@
 
     <h1 class="fw-bold">
 
-        {{ isset($nonFaculty)
-            ? 'Edit Non Faculty'
-            : 'Create Non Faculty' }}
+     {{ __('messages.add_non_faculty') }}
 
     </h1>
 

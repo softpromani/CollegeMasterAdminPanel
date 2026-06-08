@@ -5,7 +5,7 @@
           <li class="nav-item">
               <a class="nav-link " href="{{route('admin.dashboard')}}">
                   <i class="bi bi-grid"></i>
-                  <span>Dashboard</span>
+                  <span>{{ __('messages.dashboard') }}</span>
               </a>
           </li><!-- End Dashboard Nav -->
 
@@ -13,27 +13,27 @@
           <li class="nav-item">
               <a class="nav-link collapsed" href="{{ route('admin.user.index') }}">
                   <i class="bi bi-person"></i>
-                  <span>User</span>
+                  <span>{{ __('messages.users') }}</span>
               </a>
           </li>
 
               <li class="nav-item">
               <a class="nav-link collapsed" href="{{ route('admin.notice.index') }}">
                   <i class="bi bi-megaphone"></i>
-                  <span>Notice</span>
+                  <span>{{ __('messages.notices') }}</span>
               </a>
           </li>
 
             <li class="nav-item">
               <a class="nav-link collapsed" href="{{ route('admin.event.index') }}">
                   <i class="bi bi-calendar-event"></i>
-                  <span>Events</span>
+                  <span>{{ __('messages.events') }}</span>
               </a>
           </li>
     <li class="nav-item">
               <a class="nav-link collapsed" href="{{ route('admin.banner.index') }}">
                   <i class="bi bi-images"></i>
-                  <span>Banner</span>
+                  <span>{{ __('messages.banner') }}</span>
               </a>
           </li>
 
@@ -52,7 +52,7 @@
 
                   <i class="bi bi-shield-lock"></i>
 
-                  <span>Role Permission</span>
+                  <span>{{ __('messages.role_permission') }}</span>
 
                   <i class="bi bi-chevron-down ms-auto"></i>
 
@@ -73,7 +73,7 @@
 
                           <i class="bi bi-circle"></i>
 
-                          <span>Roles</span>
+                          <span>{{ __('messages.roles') }}</span>
 
                       </a>
 
@@ -85,7 +85,7 @@
 
                           <i class="bi bi-circle"></i>
 
-                          <span>Role Has Permission</span>
+                          <span>{{ __('messages.role_has_permission') }}</span>
 
                       </a>
 
@@ -103,7 +103,7 @@
 
                   <i class="bi bi-shield-lock"></i>
 
-                  <span>AQAR</span>
+                  <span>{{ __('messages.aqar') }}</span>
 
                   <i class="bi bi-chevron-down ms-auto"></i>
 
@@ -149,7 +149,7 @@
 
                   <i class="bi bi-shield-lock"></i>
 
-                  <span>Faculty</span>
+                  <span>{{ __('messages.faculty') }}</span>
 
                   <i class="bi bi-chevron-down ms-auto"></i>
 
@@ -164,7 +164,7 @@
 
                           <i class="bi bi-circle"></i>
 
-                          <span>Department</span>
+                          <span>{{ __('messages.department') }}</span>
 
                       </a>
 
@@ -176,7 +176,7 @@
 
                           <i class="bi bi-circle"></i>
 
-                          <span>Subject</span>
+                          <span>{{ __('messages.subject') }}</span>
 
                       </a>
 
@@ -188,7 +188,7 @@
 
                           <i class="bi bi-circle"></i>
 
-                          <span>Faculty</span>
+                          <span>{{ __('messages.faculty') }}</span>
 
                       </a>
 
@@ -201,7 +201,7 @@
             <li class="nav-item">
               <a class="nav-link collapsed" href="{{ route('admin.non-faculty.index') }}">
                   <i class="bi bi-person"></i>
-                  <span>Non-Faculty</span>
+                  <span>{{ __('messages.non_faculty') }}</span>
               </a>
           </li>
 

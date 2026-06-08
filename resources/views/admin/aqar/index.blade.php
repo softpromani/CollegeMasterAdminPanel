@@ -5,7 +5,7 @@
 <div class="pagetitle">
 
     <h1 class="fw-bold">
-        AQAR
+       {{ __('messages.aqar') }}
     </h1>
 
 </div>
@@ -28,7 +28,7 @@
                 class="btn btn-warning rounded-pill px-4"
             >
 
-                Add AQAR
+              {{ __('messages.add_aqar') }}
 
             </a>
 

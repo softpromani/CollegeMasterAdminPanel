@@ -28,7 +28,7 @@
 <div class="pagetitle">
 
     <h1 class="fw-bold">
-        Role Permissions
+        {{ __('messages.role_has_permission') }}
     </h1>
 
 </div>

@@ -13,7 +13,7 @@
     <div class="pagetitle">
 
         <h1 class="fw-bold">
-            {{ isset($user) ? 'Edit User' : 'Create User' }}
+         {{ __('messages.add_users') }}
         </h1>
 
         <nav>

@@ -35,7 +35,7 @@
 <div class="pagetitle">
 
     <h1 class="fw-bold">
-        Banner
+        {{ __('messages.events') }}
     </h1>
 
     <nav>
@@ -69,7 +69,7 @@
 
                 <i class="bi bi-plus-circle me-2"></i>
 
-                Add Event
+             {{ __('messages.add_events') }}
 
             </a>
 

@@ -19,7 +19,7 @@
 
     <h1 class="fw-bold">
 
-        {{ isset($event) ? 'Edit Event' : 'Create Event' }}
+      {{ __('messages.add_events') }}
 
     </h1>
 

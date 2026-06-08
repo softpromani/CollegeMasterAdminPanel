@@ -19,7 +19,7 @@
 
     <h1 class="fw-bold">
 
-       Non Faculty
+     {{ __('messages.non_faculty') }}
 
     </h1>
 
@@ -47,7 +47,7 @@
 
                 <i class="bi bi-plus-circle me-2"></i>
 
-                Add Non-Faculty
+       {{ __('messages.add_non_faculty') }}
 
             </a>
 

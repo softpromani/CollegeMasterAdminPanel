@@ -35,7 +35,7 @@
 <div class="pagetitle">
 
     <h1 class="fw-bold">
-        Subject Department
+   {{ __('messages.subject') }}
     </h1>
 
     <nav>
@@ -49,7 +49,7 @@
             </li>
 
             <li class="breadcrumb-item active">
-                Subject 
+                Subject
             </li>
 
         </ol>
@@ -69,7 +69,7 @@
 
                 <i class="bi bi-plus-circle me-2"></i>
 
-                Add Subject Department
+               {{ __('messages.add_subject') }}
 
             </a>
 

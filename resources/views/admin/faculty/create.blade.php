@@ -22,10 +22,7 @@
 
     <h1 class="fw-bold">
 
-        {{ isset($faculty)
-            ? 'Edit Faculty'
-            : 'Create Faculty'
-        }}
+{{ __('messages.add_faculty') }}
 
     </h1>
 

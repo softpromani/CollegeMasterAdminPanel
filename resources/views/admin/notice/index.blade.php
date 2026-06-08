@@ -18,7 +18,7 @@
 <div class="pagetitle">
 
     <h1 class="fw-bold">
-        Notices
+       {{ __('messages.notices') }}
     </h1>
 
 </div>
@@ -36,7 +36,7 @@
 
                 <i class="bi bi-plus-circle me-2"></i>
 
-                Add Notice
+             {{ __('messages.add_notices') }}
 
             </a>
 

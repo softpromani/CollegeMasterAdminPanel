@@ -18,7 +18,7 @@
 <div class="pagetitle">
 
     <h1 class="fw-bold">
-        Manage Roles
+       {{ __('messages.add_role') }}
     </h1>
 
     <nav>
@@ -88,7 +88,7 @@
                 class="btn btn-warning rounded-pill px-5 shadow-sm fw-semibold"
             >
 
-               
+
 
                 {{ isset($role) ? 'Update' : 'Save' }}
 

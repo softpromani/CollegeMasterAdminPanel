@@ -19,8 +19,7 @@
 
     <h1 class="fw-bold">
 
-        {{ isset($notice) ? 'Edit Notice' : 'Create Notice' }}
-
+        {{ __('messages.add_notices') }}
     </h1>
 
 </div>
