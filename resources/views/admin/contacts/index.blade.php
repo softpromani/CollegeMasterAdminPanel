@@ -5,7 +5,7 @@
 
     <div class="pagetitle d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h1>Contact Inquiries & Messages</h1>
+            <h1>Contact Inquiries & Notifications</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
@@ -28,7 +28,9 @@
 
                 <div class="card shadow-sm border-0 rounded-4">
                     <div class="card-body p-4">
-                        <h5 class="card-title fw-bold text-dark mb-3">All Inquiries ({{ $contacts->count() }})</h5>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="card-title fw-bold text-dark mb-0">All Inquiries & Messages ({{ $contacts->count() }})</h5>
+                        </div>
 
                         <div class="table-responsive">
                             <table class="table table-hover align-middle datatable">
@@ -36,8 +38,8 @@
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Status</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Email</th>
+                                        <th scope="col">Sender Name</th>
+                                        <th scope="col">Email Address</th>
                                         <th scope="col">Subject</th>
                                         <th scope="col">Received Date</th>
                                         <th scope="col" class="text-center">Action</th>
@@ -45,7 +47,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach($contacts as $index => $contact)
-                                        <tr>
+                                        <tr class="{{ $contact->status === 'unread' ? 'table-warning bg-opacity-10' : '' }}">
                                             <th scope="row">{{ $index + 1 }}</th>
                                             <td>
                                                 @if($contact->status === 'unread')
@@ -55,14 +57,14 @@
                                                 @endif
                                             </td>
                                             <td class="fw-bold text-dark">{{ $contact->name }}</td>
-                                            <td><a href="mailto:{{ $contact->email }}" class="text-decoration-none">{{ $contact->email }}</a></td>
+                                            <td><a href="mailto:{{ $contact->email }}" class="text-decoration-none text-primary">{{ $contact->email }}</a></td>
                                             <td>{{ $contact->subject ?? 'No Subject' }}</td>
                                             <td>{{ $contact->created_at?->format('M d, Y h:i A') ?? 'Recently' }}</td>
                                             <td class="text-center">
                                                 <button type="button" 
                                                         class="btn btn-sm btn-primary rounded-pill px-3 me-1" 
                                                         onclick="viewMessage({{ $contact->id }}, '{{ addslashes($contact->name) }}', '{{ addslashes($contact->email) }}', '{{ addslashes($contact->subject ?? '') }}', '{{ addslashes(str_replace(["\r", "\n"], ' ', $contact->message)) }}', '{{ $contact->created_at?->format('F d, Y h:i A') }}')">
-                                                    <i class="bi bi-eye"></i> View
+                                                    <i class="bi bi-eye"></i> View Message
                                                 </button>
 
                                                 <form action="{{ route('admin.contact-inquiries.destroy', $contact->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this message?');">
@@ -132,7 +134,7 @@ function viewMessage(id, name, email, subject, message, date) {
     document.getElementById('modalDate').innerText = date;
     document.getElementById('modalBody').innerText = message;
 
-    // Send async status update to read
+    // Send async status update to mark as read
     fetch(`{{ url('admin/contact-inquiries') }}/${id}`);
 
     const modal = new bootstrap.Modal(document.getElementById('messageModal'));
