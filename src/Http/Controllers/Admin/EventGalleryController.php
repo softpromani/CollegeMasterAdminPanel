@@ -125,25 +125,21 @@ class EventGalleryController extends Controller
 public function store(Request $request)
 {
     $request->validate([
-
         'event_id' => 'required',
-
-        'images.*' => 'nullable'
-
+        'images' => 'required|array',
+        'images.*' => 'image',
     ]);
 
-    foreach($request->file('images') as $image)
-    {
-        $path = $image
-            ->store('event-gallery','public');
+    if ($request->hasFile('images')) {
+        foreach($request->file('images') as $image)
+        {
+            $path = $image->store('event-gallery','public');
 
-        EventGallery::create([
-
-            'event_id' => $request->event_id,
-
-            'image' => $path
-
-        ]);
+            EventGallery::create([
+                'event_id' => $request->event_id,
+                'image' => $path
+            ]);
+        }
     }
 
     toast('Image uploaded', 'success');

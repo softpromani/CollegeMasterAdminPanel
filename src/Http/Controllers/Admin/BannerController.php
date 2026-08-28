@@ -134,33 +134,25 @@ class BannerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-
             'title_1' => 'required',
-
-            'image' => 'nullable',
-
+            'image' => 'nullable|image',
         ]);
 
-        $image = $request->file('image')
-            ->store('banner', 'public');
+        $image = null;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('banner', 'public');
+        }
 
         Banner::create([
-
             'title_1' => $request->title_1,
-
             'title_2' => $request->title_2,
-
             'url' => $request->url,
-
             'image' => $image,
-
         ]);
 
         toast('Banner Created Successfully', 'success');
 
-
-        return redirect()
-            ->route('admin.banner.index');
+        return redirect()->route('admin.banner.index');
     }
 
     /**

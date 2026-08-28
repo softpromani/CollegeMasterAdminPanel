@@ -154,30 +154,25 @@ class EventController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $request->validate([
+    {
+        $request->validate([
+            'event_name' => 'required',
+            'thumbnail' => 'nullable|image',
+        ]);
 
-        'event_name' => 'required',
+        $thumbnail = null;
+        if ($request->hasFile('thumbnail')) {
+            $thumbnail = $request->file('thumbnail')->store('events', 'public');
+        }
 
-        'thumbnail' => 'nullable'
+        Event::create([
+            'event_name' => $request->event_name,
+            'thumbnail' => $thumbnail,
+        ]);
 
-    ]);
-
-    $thumbnail = $request
-        ->file('thumbnail')
-        ->store('events','public');
-
-    Event::create([
-
-        'event_name' => $request->event_name,
-
-        'thumbnail' => $thumbnail
-
-    ]);
-
-    toast('Event Created Successfully', 'success');
-    return redirect()->route('admin.event.index');
-}
+        toast('Event Created Successfully', 'success');
+        return redirect()->route('admin.event.index');
+    }
 
     /**
      * Display the specified resource.
