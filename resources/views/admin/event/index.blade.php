@@ -35,7 +35,7 @@
 <div class="pagetitle">
 
     <h1 class="fw-bold">
-        {{ __('messages.events') }}
+        {{ __('college-admin::messages.events') }}
     </h1>
 
     <nav>
@@ -69,7 +69,7 @@
 
                 <i class="bi bi-plus-circle me-2"></i>
 
-             {{ __('messages.add_events') }}
+             {{ __('college-admin::messages.add_events') }}
 
             </a>
 

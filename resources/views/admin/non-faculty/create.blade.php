@@ -10,7 +10,7 @@
 
     <h1 class="fw-bold">
 
-     {{ __('messages.add_non_faculty') }}
+     {{ __('college-admin::messages.add_non_faculty') }}
 
     </h1>
 

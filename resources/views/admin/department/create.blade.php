@@ -19,7 +19,7 @@
 
     <h1 class="fw-bold">
 
-       {{ __('messages.add_department') }}
+       {{ __('college-admin::messages.add_department') }}
 
     </h1>
 

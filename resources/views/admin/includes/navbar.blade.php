@@ -2,7 +2,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="{{ route('admin.dashboard') }}" class="logo d-flex align-items-center">
-        <img src="{{ asset(config('college-admin.branding.logo_path', 'vendor/college-admin/assets/img/logo.png')) }}" alt="Logo">
+        <img src="{{ asset(config('college-admin.branding.logo_path', 'vendor/college-admin/assets/img/logo.jpg')) }}" alt="Logo">
         <span class="d-none d-lg-block">{{ config('college-admin.branding.app_name', 'College Admin') }}</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>

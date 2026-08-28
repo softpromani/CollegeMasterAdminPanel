@@ -14,7 +14,7 @@
 
         <h1 class="fw-bold">
 
-          {{ __('messages.add_subject') }}
+          {{ __('college-admin::messages.add_subject') }}
         </h1>
 
         <nav>

@@ -26,7 +26,7 @@
 
     <h1 class="fw-bold">
 
-       {{ __('messages.gallery') }}
+       {{ __('college-admin::messages.gallery') }}
 
     </h1>
 

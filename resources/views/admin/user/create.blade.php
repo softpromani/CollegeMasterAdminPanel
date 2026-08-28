@@ -13,7 +13,7 @@
     <div class="pagetitle">
 
         <h1 class="fw-bold">
-         {{ __('messages.add_users') }}
+         {{ __('college-admin::messages.add_users') }}
         </h1>
 
         <nav>

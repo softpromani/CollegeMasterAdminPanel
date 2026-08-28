@@ -18,7 +18,7 @@
 <div class="pagetitle">
 
     <h1 class="fw-bold">
-       {{ __('messages.add_role') }}
+       {{ __('college-admin::messages.add_role') }}
     </h1>
 
     <nav>

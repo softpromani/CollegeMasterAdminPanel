@@ -19,7 +19,7 @@
 
     <h1 class="fw-bold">
 
-      {{ __('messages.add_events') }}
+      {{ __('college-admin::messages.add_events') }}
 
     </h1>
 

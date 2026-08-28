@@ -6,7 +6,7 @@
 
     <h1 class="fw-bold">
 
-      {{ __('messages.department') }}
+      {{ __('college-admin::messages.department') }}
     </h1>
 
 </div>
@@ -26,7 +26,7 @@
 
                     <i class="bi bi-plus-circle me-2"></i>
 
-                    {{ __('messages.add_department') }}
+                    {{ __('college-admin::messages.add_department') }}
                 </a>
 
             </div>

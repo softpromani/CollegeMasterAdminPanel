@@ -22,7 +22,7 @@
 
     <h1 class="fw-bold">
 
-{{ __('messages.add_faculty') }}
+{{ __('college-admin::messages.add_faculty') }}
 
     </h1>
 

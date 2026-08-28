@@ -31,6 +31,7 @@ Route::get('language/{locale}', function ($locale) {
         abort(400);
     }
     session()->put('locale', $locale);
+    session()->save();
     return back();
 })->name('admin.language.switch');
 
@@ -39,6 +40,7 @@ Route::get('lang/{locale}', function ($locale) {
         abort(400);
     }
     session()->put('locale', $locale);
+    session()->save();
     return back();
 })->name('language.switch');
 

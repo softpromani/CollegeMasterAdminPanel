@@ -51,7 +51,7 @@ return [
     */
     'branding' => [
         'app_name' => env('COLLEGE_ADMIN_NAME', 'College Master Admin'),
-        'logo_path' => 'vendor/college-admin/assets/img/logo.png',
+        'logo_path' => 'vendor/college-admin/assets/img/logo.jpg',
         'footer_text' => 'College Master Admin Panel',
     ],
 ];

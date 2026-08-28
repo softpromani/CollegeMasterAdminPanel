@@ -33,7 +33,7 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1 class="fw-bold">{{ __('messages.users') }}</h1>
+        <h1 class="fw-bold">{{ __('college-admin::messages.users') }}</h1>
 
         <nav>
             <ol class="breadcrumb">
@@ -59,7 +59,7 @@
                 <a href="{{ route('admin.user.create') }}" class="btn btn-warning rounded-pill px-4 fw-semibold shadow-sm">
 
                     <i class="bi bi-plus-circle me-2"></i>
-                {{ __('messages.add_users') }}
+                {{ __('college-admin::messages.add_users') }}
 
                 </a>
 

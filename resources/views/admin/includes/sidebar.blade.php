@@ -5,7 +5,7 @@
           <li class="nav-item">
               <a class="nav-link " href="{{route('admin.dashboard')}}">
                   <i class="bi bi-grid"></i>
-                  <span>{{ __('messages.dashboard') }}</span>
+                  <span>{{ __('college-admin::messages.dashboard') }}</span>
               </a>
           </li><!-- End Dashboard Nav -->
 
@@ -13,27 +13,27 @@
           <li class="nav-item">
               <a class="nav-link collapsed" href="{{ route('admin.user.index') }}">
                   <i class="bi bi-person"></i>
-                  <span>{{ __('messages.users') }}</span>
+                  <span>{{ __('college-admin::messages.users') }}</span>
               </a>
           </li>
 
               <li class="nav-item">
               <a class="nav-link collapsed" href="{{ route('admin.notice.index') }}">
                   <i class="bi bi-megaphone"></i>
-                  <span>{{ __('messages.notices') }}</span>
+                  <span>{{ __('college-admin::messages.notices') }}</span>
               </a>
           </li>
 
             <li class="nav-item">
               <a class="nav-link collapsed" href="{{ route('admin.event.index') }}">
                   <i class="bi bi-calendar-event"></i>
-                  <span>{{ __('messages.events') }}</span>
+                  <span>{{ __('college-admin::messages.events') }}</span>
               </a>
           </li>
     <li class="nav-item">
               <a class="nav-link collapsed" href="{{ route('admin.banner.index') }}">
                   <i class="bi bi-images"></i>
-                  <span>{{ __('messages.banner') }}</span>
+                  <span>{{ __('college-admin::messages.banner') }}</span>
               </a>
           </li>
 
@@ -52,7 +52,7 @@
 
                   <i class="bi bi-shield-lock"></i>
 
-                  <span>{{ __('messages.role_permission') }}</span>
+                  <span>{{ __('college-admin::messages.role_permission') }}</span>
 
                   <i class="bi bi-chevron-down ms-auto"></i>
 
@@ -73,7 +73,7 @@
 
                           <i class="bi bi-circle"></i>
 
-                          <span>{{ __('messages.roles') }}</span>
+                          <span>{{ __('college-admin::messages.roles') }}</span>
 
                       </a>
 
@@ -85,7 +85,7 @@
 
                           <i class="bi bi-circle"></i>
 
-                          <span>{{ __('messages.role_has_permission') }}</span>
+                          <span>{{ __('college-admin::messages.role_has_permission') }}</span>
 
                       </a>
 
@@ -103,7 +103,7 @@
 
                   <i class="bi bi-shield-lock"></i>
 
-                  <span>{{ __('messages.aqar') }}</span>
+                  <span>{{ __('college-admin::messages.aqar') }}</span>
 
                   <i class="bi bi-chevron-down ms-auto"></i>
 
@@ -149,7 +149,7 @@
 
                   <i class="bi bi-shield-lock"></i>
 
-                  <span>{{ __('messages.faculty') }}</span>
+                  <span>{{ __('college-admin::messages.faculty') }}</span>
 
                   <i class="bi bi-chevron-down ms-auto"></i>
 
@@ -164,7 +164,7 @@
 
                           <i class="bi bi-circle"></i>
 
-                          <span>{{ __('messages.department') }}</span>
+                          <span>{{ __('college-admin::messages.department') }}</span>
 
                       </a>
 
@@ -176,7 +176,7 @@
 
                           <i class="bi bi-circle"></i>
 
-                          <span>{{ __('messages.subject') }}</span>
+                          <span>{{ __('college-admin::messages.subject') }}</span>
 
                       </a>
 
@@ -188,7 +188,7 @@
 
                           <i class="bi bi-circle"></i>
 
-                          <span>{{ __('messages.faculty') }}</span>
+                          <span>{{ __('college-admin::messages.faculty') }}</span>
 
                       </a>
 
@@ -201,7 +201,7 @@
             <li class="nav-item">
               <a class="nav-link collapsed" href="{{ route('admin.non-faculty.index') }}">
                   <i class="bi bi-person"></i>
-                  <span>{{ __('messages.non_faculty') }}</span>
+                  <span>{{ __('college-admin::messages.non_faculty') }}</span>
               </a>
           </li>
 

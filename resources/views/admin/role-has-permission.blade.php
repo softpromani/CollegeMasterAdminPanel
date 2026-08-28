@@ -28,7 +28,7 @@
 <div class="pagetitle">
 
     <h1 class="fw-bold">
-        {{ __('messages.role_has_permission') }}
+        {{ __('college-admin::messages.role_has_permission') }}
     </h1>
 
 </div>

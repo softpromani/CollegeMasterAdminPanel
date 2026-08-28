@@ -6,7 +6,7 @@
 
     <h1 class="fw-bold">
 
-      {{ __('messages.add_aqar') }}
+      {{ __('college-admin::messages.add_aqar') }}
 
     </h1>
 

@@ -5,7 +5,7 @@
 <div class="pagetitle">
 
     <h1 class="fw-bold">
-       {{ __('messages.aqar') }}
+       {{ __('college-admin::messages.aqar') }}
     </h1>
 
 </div>
@@ -28,7 +28,7 @@
                 class="btn btn-warning rounded-pill px-4"
             >
 
-              {{ __('messages.add_aqar') }}
+              {{ __('college-admin::messages.add_aqar') }}
 
             </a>
 
