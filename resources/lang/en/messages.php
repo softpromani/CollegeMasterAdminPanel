@@ -23,8 +23,6 @@ return
         'add_subject' => 'Add Subject',
         'non_faculty' => 'Non-Faculty',
         'add_non_faculty' => 'Add Non Faculty',
-          'gallery' => 'Gallery',
-
-
-
+        'gallery' => 'Gallery',
+        'system_updates' => 'System & Updates',
     ];

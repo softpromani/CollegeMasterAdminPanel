@@ -137,6 +137,15 @@
               </a>
           </li>
 
+          <!-- System & Updates -->
+          <li class="nav-heading">System</li>
+          <li class="nav-item">
+              <a class="nav-link {{ request()->routeIs('admin.system.*') ? '' : 'collapsed' }}" href="{{ route('admin.system.updates') }}">
+                  <i class="bi bi-arrow-repeat"></i>
+                  <span>{{ __('college-admin::messages.system_updates') }}</span>
+              </a>
+          </li>
+
       </ul>
 
   </aside><!-- End Sidebar-->

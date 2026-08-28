@@ -81,4 +81,9 @@ Route::middleware(['auth'])->name('admin.')->group(function () {
 
     Route::get('role-has-permission/{role?}', [PermissionController::class, 'roleHasPermission'])->name('roles.permission');
     Route::post('role-has-permission-update/{id}', [PermissionController::class, 'rolePermissionUpdate'])->name('roles.permission.update');
+
+    // System & Package Updates
+    Route::get('system/updates', [\CollegeAdmin\Http\Controllers\Admin\UpdateController::class, 'index'])->name('system.updates');
+    Route::post('system/check-updates', [\CollegeAdmin\Http\Controllers\Admin\UpdateController::class, 'check'])->name('system.check-updates');
+    Route::post('system/run-update', [\CollegeAdmin\Http\Controllers\Admin\UpdateController::class, 'runUpdate'])->name('system.run-update');
 });

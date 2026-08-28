@@ -38,7 +38,6 @@ return [
     'non_faculty' => 'गैर-शिक्षण कर्मचारी',
     'add_non_faculty' => 'गैर-शिक्षण कर्मचारी जोड़ें',
 
-     'gallery' => 'गैलरी',
-
-
+    'gallery' => 'गैलरी',
+    'system_updates' => 'सिस्टम और अपडेट्स',
 ];
