@@ -1,4 +1,5 @@
 @extends('college-admin::admin.includes.master')
+@section('title', 'Banner List')
 
 @section('header-area')
 <style>

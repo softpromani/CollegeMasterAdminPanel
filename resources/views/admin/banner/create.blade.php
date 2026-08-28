@@ -1,4 +1,7 @@
 @extends('college-admin::admin.includes.master')
+@section('title')
+<?php echo isset($banner) ? "Edit Banner" : "Create Banner"; ?>
+@endsection
 
 @section('header-area')
 

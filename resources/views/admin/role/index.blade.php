@@ -1,4 +1,5 @@
 @extends('college-admin::admin.includes.master')
+@section('title', 'Roles & Permissions')
 @section('header-area')
     <style>
         .table thead th {

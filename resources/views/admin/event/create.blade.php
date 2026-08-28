@@ -1,4 +1,7 @@
 @extends('college-admin::admin.includes.master')
+@section('title')
+<?php echo isset($event) ? "Edit Event" : "Create Event"; ?>
+@endsection
 
 @section('header-area')
 

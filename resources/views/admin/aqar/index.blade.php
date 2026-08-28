@@ -1,4 +1,5 @@
 @extends('college-admin::admin.includes.master')
+@section('title', 'AQAR Criteria List')
 
 @section('content')
 

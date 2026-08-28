@@ -1,4 +1,7 @@
 @extends('college-admin::admin.includes.master')
+@section('title')
+<?php echo isset($notice) ? "Edit Notice" : "Create Notice"; ?>
+@endsection
 
 @section('header-area')
 

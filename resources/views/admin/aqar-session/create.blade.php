@@ -1,6 +1,8 @@
 @extends('college-admin::admin.includes.master')
-
 @section('title')
+<?php echo isset($session) ? "Edit Session" : "Create Session"; ?>
+@endsection
+
     {{ isset($aqar) ? 'Edit AQAR' : 'Add AQAR' }}
 @endsection
 

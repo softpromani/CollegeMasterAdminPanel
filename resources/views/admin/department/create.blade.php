@@ -1,4 +1,7 @@
 @extends('college-admin::admin.includes.master')
+@section('title')
+<?php echo isset($department) ? "Edit Department" : "Create Department"; ?>
+@endsection
 
 @section('header-area')
 

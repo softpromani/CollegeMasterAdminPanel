@@ -1,13 +1,14 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
- <title>Admin | @yield('title')</title>
+ <title>{{ config('college-admin.branding.app_name', 'College Master Admin') }} | @yield('title', 'Dashboard')</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{ asset('vendor/college-admin/assets/img/favicon.png') }}" rel="icon">
-  <link href="{{ asset('vendor/college-admin/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+  <link rel="icon" type="image/jpeg" href="{{ asset(config('college-admin.branding.favicon_path', 'vendor/college-admin/assets/img/logo.jpg')) }}">
+  <link rel="shortcut icon" type="image/jpeg" href="{{ asset(config('college-admin.branding.favicon_path', 'vendor/college-admin/assets/img/logo.jpg')) }}">
+  <link rel="apple-touch-icon" href="{{ asset(config('college-admin.branding.favicon_path', 'vendor/college-admin/assets/img/logo.jpg')) }}">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">

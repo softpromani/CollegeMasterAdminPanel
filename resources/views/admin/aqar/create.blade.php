@@ -1,4 +1,7 @@
 @extends('college-admin::admin.includes.master')
+@section('title')
+<?php echo isset($aqar) ? "Edit AQAR" : "Create AQAR"; ?>
+@endsection
 
 @section('content')
 

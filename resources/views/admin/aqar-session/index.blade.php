@@ -1,4 +1,5 @@
 @extends('college-admin::admin.includes.master')
+@section('title', 'AQAR Sessions')
 
 @section('header-area')
 <style>
