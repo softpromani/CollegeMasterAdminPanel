@@ -1,0 +1,76 @@
+name: Deploy Laravel Application to cPanel
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Build & Deploy to cPanel
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql, bcmath, zip, gd, fileinfo
+          coverage: none
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install Dependencies
+        run: composer install --prefer-dist --no-interaction --no-dev --optimize-autoloader
+
+      # Optional SSH Deployment (If SSH is enabled on your cPanel)
+      # Uncomment this step and add SSH secrets if you have SSH access
+      # - name: Deploy via SSH
+      #   uses: appleboy/ssh-action@v1.0.3
+      #   with:
+      #     host: ${{ secrets.SSH_HOST }}
+      #     username: ${{ secrets.SSH_USER }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     port: ${{ secrets.SSH_PORT || 22 }}
+      #     script: |
+      #       cd ${{ secrets.CPANEL_APP_DIR }}
+      #       git pull origin ${{ github.ref_name }}
+      #       composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+      #       php artisan migrate --force
+      #       php artisan config:cache
+      #       php artisan route:cache
+      #       php artisan view:cache
+      #       php artisan storage:link
+
+      # FTP / FTPS Deployment (Works out-of-the-box on all cPanels)
+      - name: Deploy via FTPS to cPanel
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_TARGET_DIR || 'public_html/' }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/tests/**
+            .env.example
+            phpunit.xml
+            README.md
+            update_*.php
