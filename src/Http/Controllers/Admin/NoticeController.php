@@ -313,9 +313,8 @@ public function update(Request $request, $id)
     {
         $notice = Notice::findOrFail($id);
 
-        if ($notice->file && Storage::disk('public')->exists($notice->file)) {
-
-            Storage::disk('public')->delete($notice->file);
+        if ($notice->type == 'file' && !empty($notice->filename) && Storage::disk('public')->exists($notice->filename)) {
+            Storage::disk('public')->delete($notice->filename);
         }
 
         $notice->delete();

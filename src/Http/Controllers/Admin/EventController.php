@@ -197,58 +197,48 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
- public function update(Request $request,$id)
-{
-    $event = Event::findOrFail($id);
-
-    $request->validate([
-
-        'event_name' => 'required',
-
-        'thumbnail' => 'nullable|image'
-
-    ]);
-
-    $thumbnail = $event->thumbnail;
-
-    if($request->hasFile('thumbnail'))
+    public function update(Request $request, $id)
     {
-        Storage::disk('public')
-            ->delete($event->thumbnail);
+        $event = Event::findOrFail($id);
 
-        $thumbnail = $request
-            ->file('thumbnail')
-            ->store('events','public');
+        $request->validate([
+            'event_name' => 'required',
+            'thumbnail' => 'nullable|image',
+        ]);
+
+        $thumbnail = $event->thumbnail;
+
+        if ($request->hasFile('thumbnail')) {
+            if (!empty($event->thumbnail) && Storage::disk('public')->exists($event->thumbnail)) {
+                Storage::disk('public')->delete($event->thumbnail);
+            }
+
+            $thumbnail = $request->file('thumbnail')->store('events', 'public');
+        }
+
+        $event->update([
+            'event_name' => $request->event_name,
+            'thumbnail' => $thumbnail,
+        ]);
+
+        toast('Event Updated Successfully', 'success');
+        return redirect()->route('admin.event.index');
     }
-
-    $event->update([
-
-        'event_name' => $request->event_name,
-
-        'thumbnail' => $thumbnail
-
-    ]);
-
-    toast('Event Updated Successfully', 'success');
-    return redirect()->route('admin.event.index');
-}
 
     /**
      * Remove the specified resource from storage.
      */
-  public function destroy($id)
-{
-    $event = Event::findOrFail($id);
-
-    if($event->thumbnail)
+    public function destroy($id)
     {
-        Storage::disk('public')
-            ->delete($event->thumbnail);
+        $event = Event::findOrFail($id);
+
+        if (!empty($event->thumbnail) && Storage::disk('public')->exists($event->thumbnail)) {
+            Storage::disk('public')->delete($event->thumbnail);
+        }
+
+        $event->delete();
+
+        toast('Event Deleted Successfully', 'success');
+        return back();
     }
-
-    $event->delete();
-
-    toast('Event Deleted Successfully', 'success');
-    return back();
-}
 }
