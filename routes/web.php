@@ -4,6 +4,7 @@ use CollegeAdmin\Http\Controllers\Admin\AQARController;
 use CollegeAdmin\Http\Controllers\Admin\AQARCriteriaController;
 use CollegeAdmin\Http\Controllers\Admin\AQARSessionController;
 use CollegeAdmin\Http\Controllers\Admin\BannerController;
+use CollegeAdmin\Http\Controllers\Admin\ContactController;
 use CollegeAdmin\Http\Controllers\Admin\DashboardController;
 use CollegeAdmin\Http\Controllers\Admin\DepartmentController;
 use CollegeAdmin\Http\Controllers\Admin\EventController;

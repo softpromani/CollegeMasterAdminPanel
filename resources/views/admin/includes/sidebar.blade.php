@@ -66,7 +66,20 @@
                           <span>{{ __('college-admin::messages.role_has_permission') }}</span>
                       </a>
                   </li>
-              </ul>
+                      <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.contact-inquiries.*') ? '' : 'collapsed' }}"
+                href="{{ route('admin.contact-inquiries.index') }}">
+                <i class="bi bi-chat-left-text"></i>
+                <span>Inquiries</span>
+                @php
+                    $unreadCount = \CollegeAdmin\Models\Contact::where('status', 'unread')->count();
+                @endphp
+                @if($unreadCount > 0)
+                    <span class="badge bg-danger rounded-pill ms-auto">{{ $unreadCount }}</span>
+                @endif
+            </a>
+        </li>
+    </ul>
           </li>
 
           <!-- AQAR Dropdown -->
@@ -93,7 +106,20 @@
                           <span>Session Wise</span>
                       </a>
                   </li>
-              </ul>
+                      <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.contact-inquiries.*') ? '' : 'collapsed' }}"
+                href="{{ route('admin.contact-inquiries.index') }}">
+                <i class="bi bi-chat-left-text"></i>
+                <span>Inquiries</span>
+                @php
+                    $unreadCount = \CollegeAdmin\Models\Contact::where('status', 'unread')->count();
+                @endphp
+                @if($unreadCount > 0)
+                    <span class="badge bg-danger rounded-pill ms-auto">{{ $unreadCount }}</span>
+                @endif
+            </a>
+        </li>
+    </ul>
           </li>
 
           <!-- Faculty & Department Dropdown -->
@@ -126,7 +152,20 @@
                           <span>{{ __('college-admin::messages.faculty') }}</span>
                       </a>
                   </li>
-              </ul>
+                      <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.contact-inquiries.*') ? '' : 'collapsed' }}"
+                href="{{ route('admin.contact-inquiries.index') }}">
+                <i class="bi bi-chat-left-text"></i>
+                <span>Inquiries</span>
+                @php
+                    $unreadCount = \CollegeAdmin\Models\Contact::where('status', 'unread')->count();
+                @endphp
+                @if($unreadCount > 0)
+                    <span class="badge bg-danger rounded-pill ms-auto">{{ $unreadCount }}</span>
+                @endif
+            </a>
+        </li>
+    </ul>
           </li>
 
           <!-- Non-Faculty -->
@@ -146,6 +185,19 @@
               </a>
           </li>
 
-      </ul>
+              <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.contact-inquiries.*') ? '' : 'collapsed' }}"
+                href="{{ route('admin.contact-inquiries.index') }}">
+                <i class="bi bi-chat-left-text"></i>
+                <span>Inquiries</span>
+                @php
+                    $unreadCount = \CollegeAdmin\Models\Contact::where('status', 'unread')->count();
+                @endphp
+                @if($unreadCount > 0)
+                    <span class="badge bg-danger rounded-pill ms-auto">{{ $unreadCount }}</span>
+                @endif
+            </a>
+        </li>
+    </ul>
 
   </aside><!-- End Sidebar-->
