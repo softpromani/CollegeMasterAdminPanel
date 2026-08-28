@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-@include('admin.includes.head')
+@include('college-admin::admin.includes.head')
 
 
 @yield('header-area')
 </head>
 <body>
 
-  @include('admin.includes.navbar')
+  @include('college-admin::admin.includes.navbar')
 
-  @include('admin.includes.sidebar')
+  @include('college-admin::admin.includes.sidebar')
 
    <main id="main" class="main">
 
@@ -18,9 +18,9 @@
 
    </main>
 
-@include('admin.includes.footer')
+@include('college-admin::admin.includes.footer')
 
-@include('admin.includes.scripts')
+@include('college-admin::admin.includes.scripts')
 @yield('script-area')
 @stack('scripts')
 

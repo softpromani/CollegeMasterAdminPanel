@@ -1,4 +1,4 @@
-@extends('admin.includes.master')
+@extends('college-admin::admin.includes.master')
 
 @section('header-area')
 

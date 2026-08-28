@@ -1,4 +1,4 @@
-@extends('admin.includes.master')
+@extends('college-admin::admin.includes.master')
 
 @section('title')
 {{ isset($nonFaculty) ? 'Edit Non Faculty' : 'Create Non Faculty' }}
