@@ -1,8 +1,8 @@
 <?php
 
-namespace Database\Seeders;
+namespace CollegeAdmin\Database\Seeders;
 
-use App\Models\User;
+use CollegeAdmin\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -12,27 +12,21 @@ class AdminSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-   public function run(): void
+    public function run(): void
     {
-        $adminRole = Role::where('name', 'admin')->first();
+        $adminRole = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'web']);
 
-        $user = User::create([
-
-            'email' => 'lnmu@gmail.com',
-
-            'first_name' => 'LNMU',
-
-            'last_name' => 'Admin',
-
-            'phone' => '123456789',
-
-            'role_id' => $adminRole->id,
-
-            'password' => Hash::make('12345'),
-
-        ]);
+        $user = User::firstOrCreate(
+            ['email' => 'admin@gmail.com'],
+            [
+                'first_name' => 'College',
+                'last_name' => 'Admin',
+                'phone' => '1234567890',
+                'role_id' => $adminRole->id,
+                'password' => Hash::make('123456'),
+            ]
+        );
 
         $user->assignRole('admin');
     }
-
 }

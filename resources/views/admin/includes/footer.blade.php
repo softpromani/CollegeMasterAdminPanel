@@ -1,14 +1,14 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer mt-5">
     <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+      &copy; Copyright <strong><span>{{ config('college-admin.branding.app_name', 'College Master Admin') }}</span></strong>. All Rights Reserved
     </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    <div class="credits d-flex justify-content-center align-items-center gap-2 mt-1">
+      <span class="badge bg-secondary-subtle text-dark border">
+        Version <strong>v{{ \CollegeAdmin\CollegeAdmin::VERSION }}</strong>
+      </span>
+      <span>|</span>
+      <span>College Master Admin Panel</span>
     </div>
   </footer><!-- End Footer -->
 

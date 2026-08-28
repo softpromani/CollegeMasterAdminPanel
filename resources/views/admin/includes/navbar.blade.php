@@ -1,9 +1,9 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+      <a href="{{ route('admin.dashboard') }}" class="logo d-flex align-items-center">
+        <img src="{{ asset(config('college-admin.branding.logo_path', 'vendor/college-admin/assets/img/logo.png')) }}" alt="Logo">
+        <span class="d-none d-lg-block">{{ config('college-admin.branding.app_name', 'College Admin') }}</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -160,16 +160,16 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('assets/img/default-user.png') }}"
+            <img src="{{ (Auth::user() && Auth::user()->image) ? asset('storage/' . Auth::user()->image) : asset('vendor/college-admin/assets/img/profile-img.jpg') }}"
                  alt="Profile"
                  class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"> {{ Auth::user()->first_name }}</span>
-          </a><!-- End Profile Iamge Icon -->
+            <span class="d-none d-md-block dropdown-toggle ps-2"> {{ Auth::user()?->first_name }}</span>
+          </a><!-- End Profile Image Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>{{Auth::user()->first_name}} {{Auth::user()->last_name}}</h6>
-              <span>{{Auth::user()->role->name}}</span>
+              <h6>{{ Auth::user()?->first_name }} {{ Auth::user()?->last_name }}</h6>
+              <span>{{ Auth::user()?->role?->name ?? 'Admin' }}</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -185,21 +185,14 @@
               <hr class="dropdown-divider">
             </li>
 
-
             <li>
-              <hr class="dropdown-divider">
-            </li>
-
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="{{ route('login') }}">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
+              <form action="{{ route('admin.logout') }}" method="POST" class="d-inline">
+                @csrf
+                <button type="submit" class="dropdown-item d-flex align-items-center border-0 bg-transparent text-danger">
+                  <i class="bi bi-box-arrow-right text-danger"></i>
+                  <span>Sign Out</span>
+                </button>
+              </form>
             </li>
 
           </ul><!-- End Profile Dropdown Items -->

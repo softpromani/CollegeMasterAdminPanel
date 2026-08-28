@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace CollegeAdmin\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
@@ -13,51 +13,30 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-
-
-        app()[PermissionRegistrar::class]
-            ->forgetCachedPermissions();
-
-
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         $modules = [
-
             'dashboard',
             'user',
             'role',
             'permission',
-          'designation',
+            'designation',
             'employee',
             'banner',
             'notice',
             'event',
-
-
-
+            'department',
+            'faculty',
+            'non-faculty',
+            'aqar',
         ];
 
-
         foreach ($modules as $module) {
-
-            Permission::firstOrCreate([
-                'name' => $module
-            ]);
-
-            Permission::firstOrCreate([
-                'name' => $module . '_view'
-            ]);
-
-            Permission::firstOrCreate([
-                'name' => $module . '_create'
-            ]);
-
-            Permission::firstOrCreate([
-                'name' => $module . '_edit'
-            ]);
-
-            Permission::firstOrCreate([
-                'name' => $module . '_delete'
-            ]);
+            Permission::firstOrCreate(['name' => $module, 'guard_name' => 'web']);
+            Permission::firstOrCreate(['name' => $module . '_view', 'guard_name' => 'web']);
+            Permission::firstOrCreate(['name' => $module . '_create', 'guard_name' => 'web']);
+            Permission::firstOrCreate(['name' => $module . '_edit', 'guard_name' => 'web']);
+            Permission::firstOrCreate(['name' => $module . '_delete', 'guard_name' => 'web']);
         }
     }
 }

@@ -142,12 +142,38 @@
 @section('content')
 
 <div class="pagetitle">
-
-
     <h1>{{ __('messages.dashboard') }}</h1>
 </div>
 
 <section class="section dashboard">
+    @php
+        $updateInfo = \CollegeAdmin\Services\VersionChecker::check();
+    @endphp
+
+    @if(!empty($updateInfo['has_update']))
+        <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center justify-content-between p-3 rounded-4 shadow-sm border-warning-subtle mb-4" role="alert">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-arrow-up-circle-fill fs-3 text-warning me-3"></i>
+                <div>
+                    <h5 class="alert-heading mb-1 fw-bold text-dark">Package Update Available!</h5>
+                    <p class="mb-0 text-secondary">
+                        A new version <strong>v{{ $updateInfo['latest_version'] }}</strong> is available (Current: <code>v{{ $updateInfo['current_version'] }}</code>).
+                    </p>
+                </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                @if(!empty($updateInfo['release_url']))
+                    <a href="{{ $updateInfo['release_url'] }}" target="_blank" class="btn btn-sm btn-outline-dark rounded-pill px-3">
+                        <i class="bi bi-journal-text me-1"></i> Release Notes
+                    </a>
+                @endif
+                <span class="badge bg-warning text-dark p-2 px-3 rounded-pill fw-semibold">
+                    Run <code>composer update</code> &amp; <code>php artisan college-admin:update</code>
+                </span>
+            </div>
+        </div>
+    @endif
+
 
     <!-- Welcome Card -->
     <div class="card welcome-card mb-4">
