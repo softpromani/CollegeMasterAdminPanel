@@ -1,0 +1,18 @@
+<?php
+
+namespace CollegeAdmin\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Department extends Model
+{
+    protected $guarded = [];
+
+        public function subjects()
+    {
+        return $this->hasMany(
+            SubjectDepartment::class,
+            'department_id'
+        );
+    }
+}

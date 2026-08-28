@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f9643e7766bdf69609edc94395a0b8bf",
+    "content-hash": "a117297261d54d7bb2c8f468012371f1",
     "packages": [
         {
             "name": "brick/math",
@@ -134,6 +134,50 @@
                 }
             ],
             "time": "2024-02-09T16:56:22+00:00"
+        },
+        {
+            "name": "college-admin/college-admin",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "packages/college-admin",
+                "reference": "faaa1c7fd1de5e010a951bcdcb040110e1e5d6ca"
+            },
+            "require": {
+                "illuminate/support": "^11.0|^12.0",
+                "php": "^8.2",
+                "realrashid/sweet-alert": "^7.0",
+                "spatie/laravel-permission": "^6.0",
+                "yajra/laravel-datatables-oracle": "^11.0|^12.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CollegeAdmin\\CollegeAdminServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CollegeAdmin\\": "src/",
+                    "CollegeAdmin\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "College Master Team",
+                    "email": "support@collegemaster.com"
+                }
+            ],
+            "description": "Universal Master Admin Panel Package for College Management Systems with Auto-Discovery & Version Updates",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
         },
         {
             "name": "dflydev/dot-access-data",
@@ -8661,12 +8705,14 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "college-admin/college-admin": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
