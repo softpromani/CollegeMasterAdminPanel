@@ -68,6 +68,7 @@ Route::middleware(['auth'])->name('admin.')->group(function () {
 
     Route::resource('permissions', PermissionController::class);
     Route::resource('notice', NoticeController::class);
+    Route::resource('contact-inquiries', ContactController::class);
     Route::resource('department', DepartmentController::class);
     Route::resource('subject-department', SubjectDepartmentController::class);
     Route::resource('faculty', FacultyController::class);
