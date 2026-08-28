@@ -132,8 +132,7 @@ class DepartmentController extends Controller
 
         ];
 
-        return view(
-            'admin.department.index',
+        return view('college-admin::admin.department.index',
             compact('columns')
         );
     }
@@ -195,8 +194,7 @@ class DepartmentController extends Controller
     {
         $department = Department::findOrFail($id);
 
-        return view(
-            'admin.department.create',
+        return view('college-admin::admin.department.create',
             compact('department')
         );
     }

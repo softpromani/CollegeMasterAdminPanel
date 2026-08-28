@@ -193,8 +193,7 @@ class FacultyController extends Controller
 
     ];
 
-    return view(
-        'admin.faculty.index',
+    return view('college-admin::admin.faculty.index',
         compact('columns')
     );
 }
@@ -207,8 +206,7 @@ class FacultyController extends Controller
     $departments = Department::get();
     $subjects = SubjectDepartment::get();
 
-    return view(
-        'admin.faculty.create',
+    return view('college-admin::admin.faculty.create',
         compact(
             'departments',
             'subjects'
@@ -296,8 +294,7 @@ class FacultyController extends Controller
     $subjects = SubjectDepartment::get();
 
 
-    return view(
-        'admin.faculty.create',
+    return view('college-admin::admin.faculty.create',
         compact('faculty',
             'departments',
             'subjects'

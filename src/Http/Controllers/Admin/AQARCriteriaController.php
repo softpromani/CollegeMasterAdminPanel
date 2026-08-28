@@ -126,8 +126,7 @@ class AQARCriteriaController extends Controller
 
         ];
 
-        return view(
-            'admin.aqar.aqar-criteria',
+        return view('college-admin::admin.aqar.aqar-criteria',
             compact(
                 'columns',
                 'aqarId'
@@ -216,8 +215,7 @@ class AQARCriteriaController extends Controller
             ]
         ];
 
-        return view(
-            'admin.aqar.aqar-criteria',
+        return view('college-admin::admin.aqar.aqar-criteria',
             compact(
                 'criteria',
                 'columns'

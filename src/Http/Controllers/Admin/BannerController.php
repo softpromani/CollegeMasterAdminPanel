@@ -178,8 +178,7 @@ class BannerController extends Controller
     {
         $banner = Banner::findOrFail($id);
 
-        return view(
-            'admin.banner.create',
+        return view('college-admin::admin.banner.create',
             compact('banner')
         );
     }

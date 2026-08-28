@@ -151,8 +151,7 @@ class NoticeController extends Controller
 
     ];
 
-    return view(
-        'admin.notice.index',
+    return view('college-admin::admin.notice.index',
         compact('columns')
     );
 }

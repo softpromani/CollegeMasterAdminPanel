@@ -123,8 +123,7 @@ class NonFacultyController extends Controller
             ],
         ];
 
-        return view(
-            'admin.non-faculty.index',
+        return view('college-admin::admin.non-faculty.index',
             compact('columns')
         );
     }
@@ -189,8 +188,7 @@ class NonFacultyController extends Controller
     {
         $nonFaculty = NonFaculty::findOrFail($id);
 
-        return view(
-            'admin.non-faculty.create',
+        return view('college-admin::admin.non-faculty.create',
             compact('nonFaculty')
         );
     }

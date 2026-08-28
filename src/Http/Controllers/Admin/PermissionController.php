@@ -34,8 +34,7 @@ class PermissionController extends Controller
                 });
         }
 
-        return view(
-            'admin.role-has-permission',
+        return view('college-admin::admin.role-has-permission',
 
             compact(
                 'roles',

@@ -134,8 +134,7 @@ class SubjectDepartmentController extends Controller
 
         ];
 
-        return view(
-            'admin.subject-department.index',
+        return view('college-admin::admin.subject-department.index',
             compact('columns')
         );
     }
@@ -148,8 +147,7 @@ class SubjectDepartmentController extends Controller
     {
         $departments = Department::all();
 
-        return view(
-            'admin.subject-department.create',
+        return view('college-admin::admin.subject-department.create',
             compact('departments')
         );
     }
@@ -211,8 +209,7 @@ toast('Subject-Department Created Successfully', 'success');
 
         $departments = Department::get();
 
-        return view(
-            'admin.subject-department.create',
+        return view('college-admin::admin.subject-department.create',
             compact(
                 'subject',
                 'departments'

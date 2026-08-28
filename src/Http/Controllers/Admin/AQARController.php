@@ -140,8 +140,7 @@ class AQARController extends Controller
 
         ];
 
-        return view(
-            'admin.aqar.index',
+        return view('college-admin::admin.aqar.index',
             compact('columns')
         );
     }
@@ -191,8 +190,7 @@ class AQARController extends Controller
     {
         $aqar = AQAR::findOrFail($id);
 
-        return view(
-            'admin.aqar.create',
+        return view('college-admin::admin.aqar.create',
             compact('aqar')
         );
     }

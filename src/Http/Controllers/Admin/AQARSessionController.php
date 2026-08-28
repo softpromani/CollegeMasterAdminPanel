@@ -121,8 +121,7 @@ class AQARSessionController extends Controller
             ],
         ];
 
-        return view(
-            'admin.aqar-session.index',
+        return view('college-admin::admin.aqar-session.index',
             compact('columns')
         );
     }
@@ -179,8 +178,7 @@ class AQARSessionController extends Controller
     {
         $aqar = AQARSessionWise::findOrFail($id);
 
-        return view(
-            'admin.aqar-session.create',
+        return view('college-admin::admin.aqar-session.create',
             compact('aqar')
         );
     }

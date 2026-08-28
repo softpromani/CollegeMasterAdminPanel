@@ -114,8 +114,7 @@ class EventGalleryController extends Controller
 
         ];
 
-        return view(
-            'admin.event.gallery',
+        return view('college-admin::admin.event.gallery',
             compact(
                 'event',
                 'columns'

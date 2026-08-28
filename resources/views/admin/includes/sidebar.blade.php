@@ -2,209 +2,140 @@
 
       <ul class="sidebar-nav" id="sidebar-nav">
 
+          <!-- Dashboard -->
           <li class="nav-item">
-              <a class="nav-link " href="{{route('admin.dashboard')}}">
+              <a class="nav-link {{ request()->routeIs('admin.dashboard') || request()->routeIs('admin.index') ? '' : 'collapsed' }}" href="{{ route('admin.dashboard') }}">
                   <i class="bi bi-grid"></i>
                   <span>{{ __('college-admin::messages.dashboard') }}</span>
               </a>
           </li><!-- End Dashboard Nav -->
 
-
+          <!-- Users -->
           <li class="nav-item">
-              <a class="nav-link collapsed" href="{{ route('admin.user.index') }}">
+              <a class="nav-link {{ request()->routeIs('admin.user.*') ? '' : 'collapsed' }}" href="{{ route('admin.user.index') }}">
                   <i class="bi bi-person"></i>
                   <span>{{ __('college-admin::messages.users') }}</span>
               </a>
           </li>
 
-              <li class="nav-item">
-              <a class="nav-link collapsed" href="{{ route('admin.notice.index') }}">
+          <!-- Notices -->
+          <li class="nav-item">
+              <a class="nav-link {{ request()->routeIs('admin.notice.*') ? '' : 'collapsed' }}" href="{{ route('admin.notice.index') }}">
                   <i class="bi bi-megaphone"></i>
                   <span>{{ __('college-admin::messages.notices') }}</span>
               </a>
           </li>
 
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="{{ route('admin.event.index') }}">
+          <!-- Events -->
+          <li class="nav-item">
+              <a class="nav-link {{ request()->routeIs('admin.event.*') || request()->routeIs('admin.event.gallery*') ? '' : 'collapsed' }}" href="{{ route('admin.event.index') }}">
                   <i class="bi bi-calendar-event"></i>
                   <span>{{ __('college-admin::messages.events') }}</span>
               </a>
           </li>
-    <li class="nav-item">
-              <a class="nav-link collapsed" href="{{ route('admin.banner.index') }}">
+
+          <!-- Banners -->
+          <li class="nav-item">
+              <a class="nav-link {{ request()->routeIs('admin.banner.*') ? '' : 'collapsed' }}" href="{{ route('admin.banner.index') }}">
                   <i class="bi bi-images"></i>
                   <span>{{ __('college-admin::messages.banner') }}</span>
               </a>
           </li>
 
-
-
-
-
-
-
-
-
+          <!-- Role & Permission Dropdown -->
           <li class="nav-item">
-
-              <a class="nav-link collapsed" data-bs-target="#role-permission-nav" data-bs-toggle="collapse"
-                  href="#">
-
+              <a class="nav-link {{ request()->routeIs('admin.roles.*') || request()->routeIs('admin.permissions.*') || request()->routeIs('admin.roles.permission*') ? '' : 'collapsed' }}"
+                 data-bs-target="#role-permission-nav" data-bs-toggle="collapse" href="#">
                   <i class="bi bi-shield-lock"></i>
-
                   <span>{{ __('college-admin::messages.role_permission') }}</span>
-
                   <i class="bi bi-chevron-down ms-auto"></i>
-
               </a>
 
               <ul id="role-permission-nav"
-                  class="nav-content collapse
-                {{ request()->routeIs('admin.roles.*') ||
-                request()->routeIs('admin.permissions.*') ||
-                request()->routeIs('admin.role.permission')
-                    ? 'show'
-                    : '' }}"
+                  class="nav-content collapse {{ request()->routeIs('admin.roles.*') || request()->routeIs('admin.permissions.*') || request()->routeIs('admin.roles.permission*') ? 'show' : '' }}"
                   data-bs-parent="#sidebar-nav">
-
                   <li>
-
-                      <a href="{{ route('admin.roles.index') }}">
-
+                      <a href="{{ route('admin.roles.index') }}" class="{{ request()->routeIs('admin.roles.index') || request()->routeIs('admin.roles.create') || request()->routeIs('admin.roles.edit') ? 'active' : '' }}">
                           <i class="bi bi-circle"></i>
-
                           <span>{{ __('college-admin::messages.roles') }}</span>
-
                       </a>
-
                   </li>
-
                   <li>
-
-                      <a href="{{ route('admin.roles.permission') }}">
-
+                      <a href="{{ route('admin.roles.permission') }}" class="{{ request()->routeIs('admin.roles.permission*') ? 'active' : '' }}">
                           <i class="bi bi-circle"></i>
-
                           <span>{{ __('college-admin::messages.role_has_permission') }}</span>
-
                       </a>
-
                   </li>
-
               </ul>
-
           </li>
 
-
-              <li class="nav-item">
-
-              <a class="nav-link collapsed" data-bs-target="#aqar" data-bs-toggle="collapse"
-                  href="#">
-
-                  <i class="bi bi-shield-lock"></i>
-
-                  <span>{{ __('college-admin::messages.aqar') }}</span>
-
-                  <i class="bi bi-chevron-down ms-auto"></i>
-
-              </a>
-
-              <ul id="aqar"
-                  class="nav-content collapse"
-                  data-bs-parent="#aqar">
-
-                  <li>
-
-                      <a href="{{ route('admin.aqar.index') }}">
-
-                          <i class="bi bi-circle"></i>
-
-                          <span>Criteria Wise</span>
-
-                      </a>
-
-                  </li>
-
-                  <li>
-
-                      <a href="{{ route('admin.aqar-session.index') }}">
-
-                          <i class="bi bi-circle"></i>
-
-                          <span>Session Wise</span>
-
-                      </a>
-
-                  </li>
-
-              </ul>
-
-          </li>
-
-
+          <!-- AQAR Dropdown -->
           <li class="nav-item">
-
-              <a class="nav-link collapsed" data-bs-target="#faculty" data-bs-toggle="collapse"
-                  href="#">
-
-                  <i class="bi bi-shield-lock"></i>
-
-                  <span>{{ __('college-admin::messages.faculty') }}</span>
-
+              <a class="nav-link {{ request()->routeIs('admin.aqar.*') || request()->routeIs('admin.aqar-session.*') || request()->routeIs('admin.aqar-criteria.*') ? '' : 'collapsed' }}"
+                 data-bs-target="#aqar-nav" data-bs-toggle="collapse" href="#">
+                  <i class="bi bi-award"></i>
+                  <span>{{ __('college-admin::messages.aqar') }}</span>
                   <i class="bi bi-chevron-down ms-auto"></i>
-
               </a>
 
-              <ul id="faculty"
-                  class="nav-content collapse"
-                  data-bs-parent="#faculty">
-              <li>
-
-                      <a href="{{ route('admin.department.index') }}">
-
-                          <i class="bi bi-circle"></i>
-
-                          <span>{{ __('college-admin::messages.department') }}</span>
-
-                      </a>
-
-                  </li>
-
+              <ul id="aqar-nav"
+                  class="nav-content collapse {{ request()->routeIs('admin.aqar.*') || request()->routeIs('admin.aqar-session.*') || request()->routeIs('admin.aqar-criteria.*') ? 'show' : '' }}"
+                  data-bs-parent="#sidebar-nav">
                   <li>
-
-                      <a href="{{ route('admin.subject-department.index') }}">
-
+                      <a href="{{ route('admin.aqar.index') }}" class="{{ request()->routeIs('admin.aqar.*') || request()->routeIs('admin.aqar-criteria.*') ? 'active' : '' }}">
                           <i class="bi bi-circle"></i>
-
-                          <span>{{ __('college-admin::messages.subject') }}</span>
-
+                          <span>Criteria Wise</span>
                       </a>
-
                   </li>
-
-                             <li>
-
-                      <a href="{{ route('admin.faculty.index') }}">
-
+                  <li>
+                      <a href="{{ route('admin.aqar-session.index') }}" class="{{ request()->routeIs('admin.aqar-session.*') ? 'active' : '' }}">
                           <i class="bi bi-circle"></i>
-
-                          <span>{{ __('college-admin::messages.faculty') }}</span>
-
+                          <span>Session Wise</span>
                       </a>
-
                   </li>
               </ul>
-
           </li>
 
+          <!-- Faculty & Department Dropdown -->
+          <li class="nav-item">
+              <a class="nav-link {{ request()->routeIs('admin.department.*') || request()->routeIs('admin.subject-department.*') || request()->routeIs('admin.faculty.*') ? '' : 'collapsed' }}"
+                 data-bs-target="#faculty-nav" data-bs-toggle="collapse" href="#">
+                  <i class="bi bi-people"></i>
+                  <span>{{ __('college-admin::messages.faculty') }}</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+              </a>
 
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="{{ route('admin.non-faculty.index') }}">
-                  <i class="bi bi-person"></i>
+              <ul id="faculty-nav"
+                  class="nav-content collapse {{ request()->routeIs('admin.department.*') || request()->routeIs('admin.subject-department.*') || request()->routeIs('admin.faculty.*') ? 'show' : '' }}"
+                  data-bs-parent="#sidebar-nav">
+                  <li>
+                      <a href="{{ route('admin.department.index') }}" class="{{ request()->routeIs('admin.department.*') ? 'active' : '' }}">
+                          <i class="bi bi-circle"></i>
+                          <span>{{ __('college-admin::messages.department') }}</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="{{ route('admin.subject-department.index') }}" class="{{ request()->routeIs('admin.subject-department.*') ? 'active' : '' }}">
+                          <i class="bi bi-circle"></i>
+                          <span>{{ __('college-admin::messages.subject') }}</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="{{ route('admin.faculty.index') }}" class="{{ request()->routeIs('admin.faculty.*') ? 'active' : '' }}">
+                          <i class="bi bi-circle"></i>
+                          <span>{{ __('college-admin::messages.faculty') }}</span>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+
+          <!-- Non-Faculty -->
+          <li class="nav-item">
+              <a class="nav-link {{ request()->routeIs('admin.non-faculty.*') ? '' : 'collapsed' }}" href="{{ route('admin.non-faculty.index') }}">
+                  <i class="bi bi-person-badge"></i>
                   <span>{{ __('college-admin::messages.non_faculty') }}</span>
               </a>
           </li>
-
 
       </ul>
 

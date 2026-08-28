@@ -137,8 +137,7 @@ class EventController extends Controller
 
         ];
 
-        return view(
-            'admin.event.index',
+        return view('college-admin::admin.event.index',
             compact('columns')
         );
     }
@@ -195,8 +194,7 @@ class EventController extends Controller
     {
         $event = Event::findOrFail($id);
 
-        return view(
-            'admin.event.create',
+        return view('college-admin::admin.event.create',
             compact('event')
         );
     }

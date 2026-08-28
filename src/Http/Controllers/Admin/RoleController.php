@@ -109,8 +109,7 @@ class RoleController extends Controller
 
         ];
 
-        return view(
-            'admin.role.index',
+        return view('college-admin::admin.role.index',
             compact('columns')
         );
     }
