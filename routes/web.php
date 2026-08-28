@@ -44,6 +44,15 @@ Route::get('lang/{locale}', function ($locale) {
     session()->put('locale', $locale);
     session()->save();
     return back();
+})->name('admin.lang.switch');
+
+Route::get('switch-language/{locale}', function ($locale) {
+    if (! in_array($locale, ['en', 'hi'])) {
+        abort(400);
+    }
+    session()->put('locale', $locale);
+    session()->save();
+    return back();
 })->name('language.switch');
 
 // Root Redirect
