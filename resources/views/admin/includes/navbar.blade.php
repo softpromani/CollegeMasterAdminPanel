@@ -50,29 +50,33 @@
                 <hr class="dropdown-divider">
               </li>
               <li class="notification-item">
-                <i class="bi bi-megaphone text-primary"></i>
-                <div>
-                  <h4>{{ Str::limit($recentNotice->title, 25) }}</h4>
-                  <p>{{ $recentNotice->created_at?->diffForHumans() ?? 'Recently' }}</p>
-                </div>
+                <a href="{{ route('admin.notice.index') }}" class="d-flex align-items-start text-decoration-none text-dark w-100">
+                  <i class="bi bi-megaphone text-primary me-2 fs-5"></i>
+                  <div>
+                    <h4 class="mb-1 text-dark fs-6">{{ Str::limit($recentNotice->title, 30) }}</h4>
+                    <p class="text-muted small mb-0">{{ $recentNotice->created_at?->diffForHumans() ?? 'Recently' }}</p>
+                  </div>
+                </a>
               </li>
             @empty
               <li>
                 <hr class="dropdown-divider">
               </li>
               <li class="notification-item">
-                <i class="bi bi-info-circle text-muted"></i>
+                <i class="bi bi-info-circle text-muted me-2 fs-5"></i>
                 <div>
-                  <h4>All caught up!</h4>
-                  <p>No new notices posted.</p>
+                  <h4 class="mb-1 text-dark fs-6">All caught up!</h4>
+                  <p class="text-muted small mb-0">No new notices posted.</p>
                 </div>
               </li>
             @endforelse
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li class="dropdown-footer">
-              <a href="{{ route('admin.notice.index') }}">Show all notices</a>
+            <li class="dropdown-footer text-center py-2">
+              <a href="{{ route('admin.notice.index') }}" class="fw-semibold text-primary text-decoration-none">
+                <i class="bi bi-megaphone me-1"></i> Show all notices
+              </a>
             </li>
           </ul>
         </li><!-- End Notification Nav -->
