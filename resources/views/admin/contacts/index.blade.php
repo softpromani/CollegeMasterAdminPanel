@@ -1,4 +1,4 @@
-@extends('college-admin::admin.includes.layout')
+@extends('college-admin::admin.includes.master')
 
 @section('content')
 <main id="main" class="main">
