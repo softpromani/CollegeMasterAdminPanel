@@ -42,6 +42,20 @@
               </a>
           </li>
 
+          <!-- Inquiries -->
+          <li class="nav-item">
+              <a class="nav-link {{ request()->routeIs('admin.contact-inquiries.*') ? '' : 'collapsed' }}" href="{{ route('admin.contact-inquiries.index') }}">
+                  <i class="bi bi-chat-left-text"></i>
+                  <span>Inquiries</span>
+                  @php
+                      $unreadInquiries = \CollegeAdmin\Models\Contact::where('status', 'unread')->count();
+                  @endphp
+                  @if($unreadInquiries > 0)
+                      <span class="badge bg-danger rounded-pill ms-auto">{{ $unreadInquiries }}</span>
+                  @endif
+              </a>
+          </li>
+
           <!-- Role & Permission Dropdown -->
           <li class="nav-item">
               <a class="nav-link {{ request()->routeIs('admin.roles.*') || request()->routeIs('admin.permissions.*') || request()->routeIs('admin.roles.permission*') ? '' : 'collapsed' }}"
@@ -61,25 +75,18 @@
                       </a>
                   </li>
                   <li>
+                      <a href="{{ route('admin.permissions.index') }}" class="{{ request()->routeIs('admin.permissions.*') ? 'active' : '' }}">
+                          <i class="bi bi-circle"></i>
+                          <span>{{ __('college-admin::messages.permissions') }}</span>
+                      </a>
+                  </li>
+                  <li>
                       <a href="{{ route('admin.roles.permission') }}" class="{{ request()->routeIs('admin.roles.permission*') ? 'active' : '' }}">
                           <i class="bi bi-circle"></i>
                           <span>{{ __('college-admin::messages.role_has_permission') }}</span>
                       </a>
                   </li>
-                      <li class="nav-item">
-            <a class="nav-link {{ request()->routeIs('admin.contact-inquiries.*') ? '' : 'collapsed' }}"
-                href="{{ route('admin.contact-inquiries.index') }}">
-                <i class="bi bi-chat-left-text"></i>
-                <span>Inquiries</span>
-                @php
-                    $unreadCount = \CollegeAdmin\Models\Contact::where('status', 'unread')->count();
-                @endphp
-                @if($unreadCount > 0)
-                    <span class="badge bg-danger rounded-pill ms-auto">{{ $unreadCount }}</span>
-                @endif
-            </a>
-        </li>
-    </ul>
+              </ul>
           </li>
 
           <!-- AQAR Dropdown -->
@@ -106,20 +113,7 @@
                           <span>Session Wise</span>
                       </a>
                   </li>
-                      <li class="nav-item">
-            <a class="nav-link {{ request()->routeIs('admin.contact-inquiries.*') ? '' : 'collapsed' }}"
-                href="{{ route('admin.contact-inquiries.index') }}">
-                <i class="bi bi-chat-left-text"></i>
-                <span>Inquiries</span>
-                @php
-                    $unreadCount = \CollegeAdmin\Models\Contact::where('status', 'unread')->count();
-                @endphp
-                @if($unreadCount > 0)
-                    <span class="badge bg-danger rounded-pill ms-auto">{{ $unreadCount }}</span>
-                @endif
-            </a>
-        </li>
-    </ul>
+              </ul>
           </li>
 
           <!-- Faculty & Department Dropdown -->
@@ -143,29 +137,16 @@
                   <li>
                       <a href="{{ route('admin.subject-department.index') }}" class="{{ request()->routeIs('admin.subject-department.*') ? 'active' : '' }}">
                           <i class="bi bi-circle"></i>
-                          <span>{{ __('college-admin::messages.subject') }}</span>
+                          <span>{{ __('college-admin::messages.subject_department') }}</span>
                       </a>
                   </li>
                   <li>
-                      <a href="{{ route('admin.faculty.index') }}" class="{{ request()->routeIs('admin.faculty.*') ? 'active' : '' }}">
+                      <a href="{{ route('admin.faculty.index') }}" class="{{ request()->routeIs('admin.faculty.index') || request()->routeIs('admin.faculty.create') || request()->routeIs('admin.faculty.edit') ? 'active' : '' }}">
                           <i class="bi bi-circle"></i>
                           <span>{{ __('college-admin::messages.faculty') }}</span>
                       </a>
                   </li>
-                      <li class="nav-item">
-            <a class="nav-link {{ request()->routeIs('admin.contact-inquiries.*') ? '' : 'collapsed' }}"
-                href="{{ route('admin.contact-inquiries.index') }}">
-                <i class="bi bi-chat-left-text"></i>
-                <span>Inquiries</span>
-                @php
-                    $unreadCount = \CollegeAdmin\Models\Contact::where('status', 'unread')->count();
-                @endphp
-                @if($unreadCount > 0)
-                    <span class="badge bg-danger rounded-pill ms-auto">{{ $unreadCount }}</span>
-                @endif
-            </a>
-        </li>
-    </ul>
+              </ul>
           </li>
 
           <!-- Non-Faculty -->
@@ -176,8 +157,17 @@
               </a>
           </li>
 
+          <li class="nav-heading">{{ __('college-admin::messages.settings') }}</li>
+
+          <!-- Profile -->
+          <li class="nav-item">
+              <a class="nav-link {{ request()->routeIs('admin.profile.index') ? '' : 'collapsed' }}" href="{{ route('admin.profile.index') }}">
+                  <i class="bi bi-person-circle"></i>
+                  <span>{{ __('college-admin::messages.profile') }}</span>
+              </a>
+          </li>
+
           <!-- System & Updates -->
-          <li class="nav-heading">System</li>
           <li class="nav-item">
               <a class="nav-link {{ request()->routeIs('admin.system.*') ? '' : 'collapsed' }}" href="{{ route('admin.system.updates') }}">
                   <i class="bi bi-arrow-repeat"></i>
@@ -185,19 +175,6 @@
               </a>
           </li>
 
-              <li class="nav-item">
-            <a class="nav-link {{ request()->routeIs('admin.contact-inquiries.*') ? '' : 'collapsed' }}"
-                href="{{ route('admin.contact-inquiries.index') }}">
-                <i class="bi bi-chat-left-text"></i>
-                <span>Inquiries</span>
-                @php
-                    $unreadCount = \CollegeAdmin\Models\Contact::where('status', 'unread')->count();
-                @endphp
-                @if($unreadCount > 0)
-                    <span class="badge bg-danger rounded-pill ms-auto">{{ $unreadCount }}</span>
-                @endif
-            </a>
-        </li>
-    </ul>
+      </ul>
 
-  </aside><!-- End Sidebar-->
+  </aside>
