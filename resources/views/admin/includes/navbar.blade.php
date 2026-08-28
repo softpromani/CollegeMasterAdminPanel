@@ -125,7 +125,7 @@
 
         <li>
             <a class="dropdown-item d-flex align-items-center gap-2 py-2"
-               href="{{ route('language.switch', 'en') }}">
+               href="{{ route('admin.language.switch', 'en') }}">
 
                 <i class="bi bi-globe text-primary"></i>
 
@@ -140,7 +140,7 @@
 
         <li>
             <a class="dropdown-item d-flex align-items-center gap-2 py-2"
-               href="{{ route('language.switch', 'hi') }}">
+               href="{{ route('admin.language.switch', 'hi') }}">
 
                 <i class="bi bi-translate text-danger"></i>
 
