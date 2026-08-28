@@ -24,79 +24,57 @@
           </a>
         </li><!-- End Search Icon-->
 
-        <li class="nav-item dropdown">
+        @php
+          $recentNotices = \CollegeAdmin\Models\Notice::latest()->take(4)->get();
+        @endphp
 
+        <li class="nav-item dropdown">
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
+            @if($recentNotices->count() > 0)
+              <span class="badge bg-primary badge-number">{{ $recentNotices->count() }}</span>
+            @endif
+          </a>
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+              @if($recentNotices->count() > 0)
+                You have {{ $recentNotices->count() }} recent {{ Str::plural('notice', $recentNotices->count()) }}
+                <a href="{{ route('admin.notice.index') }}"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+              @else
+                No recent notifications
+              @endif
             </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
+            @forelse($recentNotices as $recentNotice)
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li class="notification-item">
+                <i class="bi bi-megaphone text-primary"></i>
+                <div>
+                  <h4>{{ Str::limit($recentNotice->title, 25) }}</h4>
+                  <p>{{ $recentNotice->created_at?->diffForHumans() ?? 'Recently' }}</p>
+                </div>
+              </li>
+            @empty
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li class="notification-item">
+                <i class="bi bi-info-circle text-muted"></i>
+                <div>
+                  <h4>All caught up!</h4>
+                  <p>No new notices posted.</p>
+                </div>
+              </li>
+            @endforelse
             <li>
               <hr class="dropdown-divider">
             </li>
             <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
+              <a href="{{ route('admin.notice.index') }}">Show all notices</a>
             </li>
-
-          </ul><!-- End Notification Dropdown Items -->
-
+          </ul>
         </li><!-- End Notification Nav -->
 
       <li class="nav-item dropdown">

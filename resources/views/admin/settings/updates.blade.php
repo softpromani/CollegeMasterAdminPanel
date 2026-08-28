@@ -107,7 +107,7 @@
                     <div class="mb-3">
                         <label class="form-label small fw-bold text-uppercase text-secondary">Step 1: Pull latest Composer code</label>
                         <div class="p-3 bg-dark text-white rounded-3 font-monospace small">
-                            composer update softpromani/college-admin
+                            composer update {{ config('college-admin.updates.github_repo', 'softpromani/college-admin') }}
                         </div>
                     </div>
 
@@ -160,8 +160,8 @@
 
                     <div class="mt-4 p-3 bg-light rounded-3 text-center">
                         <small class="text-muted d-block mb-2">Package Repository</small>
-                        <a href="https://github.com/softpromani/CollegeMasterAdminPanel" target="_blank" class="btn btn-sm btn-outline-dark rounded-pill px-3">
-                            <i class="bi bi-github me-1"></i> softpromani/college-admin
+                        <a href="https://github.com/{{ config('college-admin.updates.github_repo', 'softpromani/CollegeMasterAdminPanel') }}" target="_blank" class="btn btn-sm btn-outline-dark rounded-pill px-3">
+                            <i class="bi bi-github me-1"></i> {{ config('college-admin.updates.github_repo', 'softpromani/college-admin') }}
                         </a>
                     </div>
                 </div>
