@@ -180,8 +180,8 @@
         <div class="card-body p-4">
             <h2>
                 Welcome,
-                {{ Auth::user()->first_name }}
-                {{ Auth::user()->last_name }}
+                {{ Auth::user()?->first_name ?? Auth::user()?->name ?? 'Admin' }}
+                {{ Auth::user()?->last_name ?? '' }}
             </h2>
 
             <p class="mb-0">

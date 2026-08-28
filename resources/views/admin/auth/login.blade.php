@@ -8,10 +8,10 @@
     <title>Login</title>
 
     <!-- Bootstrap CSS -->
-    <link href="{{ asset('admin/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/college-admin/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Bootstrap Icons -->
-    <link href="{{ asset('admin/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/college-admin/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
 
     <style>
         body {
@@ -26,7 +26,7 @@
             position: absolute;
             inset: 0;
 
-            background: url('admin/assets/img/login-background.jpg') no-repeat center center/cover;
+            background: url('{{ asset("vendor/college-admin/assets/img/login-background.jpg") }}') no-repeat center center/cover;
             opacity: 1;
 
             z-index: -1;
@@ -219,8 +219,8 @@
                             <div
                                 class="logo-circle d-flex justify-content-center align-items-center mb-4 bg-white shadow">
 
-                                <img src="{{ asset('admin/assets/img/logo.jpg') }}" alt="LNMU Logo"
-                                    style="width: 100px; height: 100px; object-fit: contain;   mix-blend-mode: multiply;">
+                                <img src="{{ asset(config('college-admin.branding.logo_path', 'vendor/college-admin/assets/img/logo.png')) }}" alt="Logo"
+                                    style="width: 100px; height: 100px; object-fit: contain; mix-blend-mode: multiply;">
 
                             </div>
 
@@ -249,7 +249,7 @@
 
                                 </div>
 
-                                <form action="{{ route('login') }}" method="POST" class="needs-validation" novalidate>
+                                <form action="{{ route('admin.login') }}" method="POST" class="needs-validation" novalidate>
 
                                     @csrf
 
@@ -396,7 +396,7 @@ function togglePassword() {
 }
 </script>
     <!-- Bootstrap JS -->
-    <script src="{{ asset('admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendor/college-admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 </body>
 

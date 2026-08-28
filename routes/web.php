@@ -17,6 +17,7 @@ use CollegeAdmin\Http\Controllers\Admin\RoleController;
 use CollegeAdmin\Http\Controllers\Admin\SubjectDepartmentController;
 use CollegeAdmin\Http\Controllers\Admin\UserController;
 use CollegeAdmin\Http\Controllers\Auth\LoginController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Authentication Routes
@@ -33,9 +34,16 @@ Route::get('language/{locale}', function ($locale) {
     return back();
 })->name('admin.language.switch');
 
+// Root Redirect
+Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect()->route('admin.dashboard');
+    }
+    return redirect()->route('admin.login.form');
+})->name('admin.index');
+
 // Protected Admin Routes
-Route::name('admin.')->group(function () {
-    Route::get('/', [DashboardController::class, 'dashboard'])->name('index');
+Route::middleware(['auth'])->name('admin.')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     Route::resource('user', UserController::class);
