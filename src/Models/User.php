@@ -24,6 +24,18 @@ class User extends Authenticatable
     protected $guard_name = 'web';
 
     /**
+     * Boot the model and synchronize name field.
+     */
+    protected static function booted(): void
+    {
+        static::saving(function ($user) {
+            if (empty($user->name) && (!empty($user->first_name) || !empty($user->last_name))) {
+                $user->name = trim(($user->first_name ?? '') . ' ' . ($user->last_name ?? ''));
+            }
+        });
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var list<string>

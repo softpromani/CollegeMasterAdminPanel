@@ -19,6 +19,7 @@ class AdminSeeder extends Seeder
         $user = User::firstOrCreate(
             ['email' => 'admin@gmail.com'],
             [
+                'name' => 'College Admin',
                 'first_name' => 'College',
                 'last_name' => 'Admin',
                 'phone' => '1234567890',
