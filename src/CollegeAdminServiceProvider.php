@@ -5,6 +5,7 @@ namespace CollegeAdmin;
 use CollegeAdmin\Console\Commands\InstallCollegeAdminPackage;
 use CollegeAdmin\Console\Commands\UpdateCollegeAdminPackage;
 use CollegeAdmin\Http\Middleware\Localization;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,8 +31,10 @@ class CollegeAdminServiceProvider extends ServiceProvider
         // 1. Register Package Routes
         $this->registerRoutes();
 
-        // 2. Register Package Views
+        // 2. Register Package Views & Blade Components
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'college-admin');
+        Blade::anonymousComponentPath(__DIR__ . '/../resources/views/components');
+        Blade::anonymousComponentPath(__DIR__ . '/../resources/views/components', 'college-admin');
 
         // 3. Register Package Migrations
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
