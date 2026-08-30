@@ -508,16 +508,46 @@ body::after {
 
         .btn-warning {
             background: linear-gradient(135deg, #facc15, #f59e0b);
-
             border: none;
-
             color: white;
-
-            height: 40px;
         }
 
-        .btn-warning:hover {
+        .btn-warning:hover,
+        .btn-warning:focus {
             background: linear-gradient(135deg, #f59e0b, #ea580c);
+            color: white;
+        }
+
+        /* Standardized Action Buttons in Tables */
+        .table .d-flex .btn-sm,
+        .table td a.btn-sm,
+        .table td button.btn-sm {
+            width: 32px !important;
+            height: 32px !important;
+            min-width: 32px !important;
+            min-height: 32px !important;
+            padding: 0 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-radius: 8px !important;
+            font-size: 13px !important;
+            line-height: 1 !important;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .table .d-flex .btn-sm:hover,
+        .table td a.btn-sm:hover,
+        .table td button.btn-sm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .table td form {
+            display: inline-flex !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         /* FILE INPUT */
@@ -530,7 +560,6 @@ body::after {
 
         .form-label {
             font-size: 15px;
-
             color: #2d2d2d;
         }
 

@@ -8,10 +8,18 @@ class Department extends Model
 {
     protected $guarded = [];
 
-        public function subjects()
+    public function subjects()
     {
         return $this->hasMany(
             SubjectDepartment::class,
+            'department_id'
+        );
+    }
+
+    public function faculties()
+    {
+        return $this->hasMany(
+            Faculty::class,
             'department_id'
         );
     }

@@ -16,6 +16,7 @@ class CollegeAdminSeeder extends Seeder
             PermissionSeeder::class,
             RolePermissionSeeder::class,
             AdminSeeder::class,
+            BannerSeeder::class,
         ]);
     }
 }

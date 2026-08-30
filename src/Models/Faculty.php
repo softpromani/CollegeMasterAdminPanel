@@ -6,21 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Faculty extends Model
 {
-  protected $guarded = [];
+    protected $guarded = [];
 
-   public function department()
+    public function department()
     {
-        return $this->belongsTo(
-            Department::class,
-            'department_id'
-        );
+        return $this->belongsTo(Department::class, 'department_id');
     }
 
     public function subject()
     {
-        return $this->belongsTo(
-            SubjectDepartment::class,
-            'subject_department_id'
-        );
+        return $this->belongsTo(SubjectDepartment::class, 'subject_department_id');
+    }
+
+    public function subjectDepartment()
+    {
+        return $this->belongsTo(SubjectDepartment::class, 'subject_department_id');
     }
 }

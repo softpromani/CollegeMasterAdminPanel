@@ -1,10 +1,6 @@
 @extends('college-admin::admin.includes.master')
-@section('title')
-<?php echo isset($faculty) ? "Edit Faculty" : "Add Faculty"; ?>
-@endsection
+@section('title', isset($faculty) ? 'Edit Faculty' : 'Add Faculty')
 
-    {{ isset($faculty) ? 'Edit Faculty' : 'Add Faculty' }}
-@endsection
 @section('header-area')
 
 <style>

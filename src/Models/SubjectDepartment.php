@@ -8,7 +8,7 @@ class SubjectDepartment extends Model
 {
     protected $guarded = [];
 
-      public function department()
+    public function department()
     {
         return $this->belongsTo(
             Department::class,
@@ -16,4 +16,11 @@ class SubjectDepartment extends Model
         );
     }
 
+    public function faculties()
+    {
+        return $this->hasMany(
+            Faculty::class,
+            'subject_department_id'
+        );
+    }
 }

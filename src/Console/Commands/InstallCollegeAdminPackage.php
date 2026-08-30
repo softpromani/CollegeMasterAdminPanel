@@ -18,7 +18,7 @@ class InstallCollegeAdminPackage extends Command
      *
      * @var string
      */
-    protected $description = 'Install and initialize the College Master Admin Panel package';
+    protected $description = 'Install and initialize the College Master Admin Panel package in one step';
 
     /**
      * Execute the console command.
@@ -31,48 +31,57 @@ class InstallCollegeAdminPackage extends Command
 
         // 1. Publish Configuration
         $this->info('1. Publishing package configuration...');
-        $this->call('vendor:publish', [
+        $this->callSilent('vendor:publish', [
             '--tag' => 'college-admin-config',
             '--force' => $this->option('force') ?? false,
         ]);
 
         // 2. Publish Static Assets (CSS, JS, Images, Vendor libraries)
         $this->info('2. Publishing Admin UI Assets (CSS, JS, Images)...');
-        $this->call('vendor:publish', [
+        $this->callSilent('vendor:publish', [
             '--tag' => 'college-admin-assets',
             '--force' => true,
         ]);
 
-        // 3. Publish Spatie Permission migrations if not already published
-        $this->info('3. Publishing Permission System migrations...');
-        $this->call('vendor:publish', [
-            '--provider' => 'Spatie\Permission\PermissionServiceProvider',
+        // 3. Publish SweetAlert Assets
+        $this->info('3. Publishing SweetAlert assets...');
+        $this->callSilent('vendor:publish', [
+            '--provider' => 'RealRashid\SweetAlert\SweetAlertServiceProvider',
         ]);
 
-        // 4. Run Migrations
-        if ($this->confirm('Do you want to run the database migrations now?', true)) {
-            $this->info('4. Running database migrations...');
-            $this->call('migrate');
+        // 4. Create Storage Symlink
+        $this->info('4. Ensuring storage symlink exists...');
+        try {
+            $this->callSilent('storage:link');
+        } catch (\Throwable $e) {
+            // Already linked
         }
 
-        // 5. Seed default roles, permissions, and initial admin
-        if ($this->confirm('Do you want to seed default roles, permissions, and admin user?', true)) {
-            $this->info('5. Seeding default roles & permissions...');
-            $this->call('db:seed', [
-                '--class' => 'CollegeAdmin\\Database\\Seeders\\CollegeAdminSeeder',
-            ]);
-        }
+        // 5. Run Migrations
+        $this->info('5. Running database migrations...');
+        $this->call('migrate', ['--force' => true]);
 
-        // 6. Clear route & view caches
-        $this->info('6. Clearing caches...');
-        $this->call('config:clear');
-        $this->call('route:clear');
-        $this->call('view:clear');
+        // 6. Seed default roles, permissions, and initial admin
+        $this->info('6. Seeding default roles, permissions, admin user & banners...');
+        $this->call('db:seed', [
+            '--class' => 'CollegeAdmin\\Database\\Seeders\\CollegeAdminSeeder',
+            '--force' => true,
+        ]);
+
+        // 7. Clear route & view caches
+        $this->info('7. Clearing caches...');
+        $this->callSilent('config:clear');
+        $this->callSilent('route:clear');
+        $this->callSilent('view:clear');
 
         $this->newLine();
-        $this->info('🎉 College Master Admin Panel is ready for production!');
-        $this->info('👉 Access the Admin Panel at: ' . url(config('college-admin.route.prefix', 'admin')));
-        $this->info('Default Admin Credentials: admin@gmail.com / 123456');
+        $this->info('====================================================');
+        $this->info('🎉 College Master Admin Panel is ready!');
+        $this->info('👉 Access URL: ' . url(config('college-admin.route.prefix', 'admin') . '/login'));
+        $this->info('🔑 Default Credentials:');
+        $this->info('   - Email:    admin@gmail.com');
+        $this->info('   - Password: 123456');
+        $this->info('====================================================');
 
         return Command::SUCCESS;
     }

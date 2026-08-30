@@ -24,6 +24,6 @@
 @yield('script-area')
 @stack('scripts')
 
-@include('sweetalert::Alert')
+@include('sweetalert::alert')
 </body>
 </html>
